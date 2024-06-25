@@ -41,9 +41,26 @@ colors:
 # these paths are relative to this ansible role.
 # The files can be altered to give you as much control as possible
 # over the layout of the site and its functionality.
-logo_file: identity/logo.png
-header_template: templates/header.html
-footer_template: templates/footer.html
-getting_started_template: templates/getting_started.html
-quick_start_template: templates/quick_start.html
-
+templates:
+  - name: Base template
+    template: base.html
+  - name: Logo File
+    template: identity/logo.png
+  - name: Header Block Template
+    template: header.html
+  - name: Footer Block Template
+    template: footer.html
+  - name: Main Page template
+    template: main.html
+  - name: Transfer Page
+    template: transfers.html
+  - name: Getting Started Block Template
+    template: getting_started_block.html
+  - name: Documentation Block
+    template: documentation_block.html
+  - name: Documentation Page
+    template: documentation.html
+  - name: Documentation Overview
+    template: documentation/overview.html
+  - name: Documentation on Transfers
+    template: documentation/transfers.html

@@ -53,7 +53,7 @@ deactivate
 
 8. Re-activate the ansible venv
 ```
-source ~/work/ansible-venv/bin/activate
+source $WORK_DIR/ansible-venv/bin/activate
 ```
 
 9. Start the target docker container, map port 80 in the container to localhost:8080

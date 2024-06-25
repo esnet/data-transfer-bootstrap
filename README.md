@@ -63,7 +63,8 @@ docker run -d -t --name=globus-portal -p 8080:80 python:3.9-slim-bullseye
 
 10. if so, we're ready to run the role which will bring up the image
 ```
-ansible-playbook --connection docker --inventory ansible/inventory $WORK_DIR/data-transfer-bootstrap/ansible/docker.yml
+cd $WORK_DIR/data-transfer-bootstrap
+ansible-playbook --connection docker --inventory ansible/inventory ansible/docker.yml
 ```
 
 11. Use a brower to deal check that the application is running

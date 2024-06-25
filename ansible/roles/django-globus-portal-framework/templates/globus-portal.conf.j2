@@ -1,0 +1,9 @@
+WSGIPythonHome /sites/django-globus-portal-framework/venv
+WSGIPythonPath /sites/django-globus-portal-framework
+WSGIScriptAlias / /sites/django-globus-portal-framework/wsgi.py
+
+<Directory /sites/django-globus-portal-framework/>
+<Files wsgi.py>
+Require all granted
+</Files>
+</Directory>

@@ -1,0 +1,7 @@
+---
+- name: Install Globus Portal
+  hosts: all
+  vars_files:
+      - vars/docker.yml
+  roles:
+    - role: ../roles/django-globus-portal-framework

@@ -1,0 +1,49 @@
+---
+# Hostname. Used to determine the FQDN, for server settings, and in Django's settings file
+# Django will disallow any HTTP requests not sent to this domain name ("localhost" is also allowed for convenience)
+# this hostname is also used for OIDC return, so it must be set to what your browser actually displays in the title bar.
+hostname: "test.example.com"
+# Institution name. This will render in templates and settings in various places.
+institution_name: Example Institution
+
+# Administrator name and email
+administrator:
+  name: "Local Administrator Full Name"
+  email: "administrator@example.com"
+
+# Project-specific settings
+project:
+  name: "My Project's Data Transfer Portal"
+  description: "A Site to Initiate Globus Data Transfers for My Project"
+  version: "0.1.0"
+
+# Globus settings. To determine these, See README.md
+globus:
+  client_id: null
+  secret_key: null
+  search_index: null
+  collections:
+    - id: null
+      name: Example collection
+      description: This collection is included as an example.
+
+# Styling data
+colors:
+  header: "#333333"
+  primary: "#AAAAFF"
+  secondary: "#AAAAAA"
+  surfaces:
+    - "#FFFFFF"
+    - "#EEEEEE"
+    - "#DDDDDD"
+
+# HTML templates (UI partials)
+# these paths are relative to this ansible role.
+# The files can be altered to give you as much control as possible
+# over the layout of the site and its functionality.
+logo_file: identity/logo.png
+header_template: templates/header.html
+footer_template: templates/footer.html
+getting_started_template: templates/getting_started.html
+quick_start_template: templates/quick_start.html
+

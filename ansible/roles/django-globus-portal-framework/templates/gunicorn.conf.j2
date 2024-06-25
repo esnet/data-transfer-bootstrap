@@ -1,0 +1,8 @@
+[program:gunicorn]
+environment=PATH="/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",PYTHONPATH="/backend"
+command=/venv/bin/gunicorn backend.wsgi --env DJANGO_SETTINGS_MODULE=backend.settings.base --name globus-portal-app --bind 0.0.0.0:80 --workers 2 --log-level info --chdir /backend
+directory=/backend
+autostart=true
+autorestart=true
+stderr_logfile=/srv/logs/gunicorn.err
+stdout_logfile=/srv/logs/gunicorn.out

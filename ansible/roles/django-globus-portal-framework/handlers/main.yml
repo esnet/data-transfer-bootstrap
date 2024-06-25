@@ -1,0 +1,10 @@
+---
+- name: restart gunicorn
+  # full restart to deal with e.g. a2dismod mpm_event
+  service:
+      name: supervisor
+      state: "{{ item.state }}"
+  with_items:
+      - state: stopped
+      - state: started
+  listen: "restart gunicorn"

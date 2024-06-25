@@ -1,0 +1,167 @@
+---
+- name: Read in Variable Values from settings.yml
+  include_vars:
+    file: ../../settings.yml
+    name: settings
+
+- name: Check Settings / globus.client_id
+  fail: 
+    msg: "The variable globus.client_id must be set in your settings file. See README.md for more information"
+  when: not settings.globus.client_id
+
+- name: Check Settings / globus.secret_key
+  fail: 
+    msg: "The variable globus.secret_key must be set in your settings file. See README.md for more information"
+  when: not settings.globus.secret_key
+
+- name: Check Settings / globus.search_index
+  fail: 
+    msg: "The variable globus.search_index must be set in your settings file. See README.md for more information"
+  when: not settings.globus.search_index
+
+- name: Check Settings / globus.collections
+  fail: 
+    msg: "The variable globus.collections must be set in your settings file. See README.md for more information"
+  when: not settings.globus.collections
+
+- name: Check Settings / globus.collections[0].id
+  fail: 
+    msg: "The variable globus.collections must have a first element, with a property named 'id.' See README.md for more information"
+  when: not settings.globus.collections[0].id
+
+
+- name: Debug settings
+  debug:
+    var: settings
+
+- name: Update apt-get
+  shell:
+    cmd: "apt-get update && touch ~/.apt-updated"
+    creates: ~/.apt-updated
+
+- name: Install required packages
+  package:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - "build-essential"
+      - "python3-setuptools"
+      - git
+      - curl
+      - supervisor
+
+- name: Install Node 18 apt sources
+  shell:
+    cmd: curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+    creates: /etc/apt/sources.list.d/nodesource.list
+
+- name: Install Node 18 packages
+  package:
+    name: nodejs
+    state: present
+
+- name: create /etc/globus-portal if it doesn't exist
+  file:
+      path: /etc/globus-portal
+      state: directory
+      recurse: yes
+
+- name: create /srv/logs (logging path) if it doesn't exist
+  file:
+      path: /srv/logs
+      state: directory
+      recurse: yes
+
+- name: Render settings.yml
+  template:
+    src: settings.yml.j2
+    dest: /etc/globus-portal/settings.yml
+  notify: restart gunicorn
+
+- name: Create virtualvenv
+  shell:
+    cmd: "python3 -m venv {{ venv_path }}"
+    creates: "{{ venv_path }}"
+
+- name: Install cookiecutter
+  pip:
+    name: cookiecutter
+    virtualenv: "/venv/"
+
+- name: Render cookiecutter settings file
+  template:
+    src: cookiecutter.yml.j2
+    dest: /root/cookiecutter.yml
+
+- name: Install django-globus-app via Cookiecutter
+  shell:
+    chdir: /
+    cmd: "source /venv/bin/activate && cookiecutter https://github.com/NickolausDS/cookiecutter-django-globus-app --no-input --config-file /root/cookiecutter.yml"
+    creates: "/backend"
+  args:
+    executable: /bin/bash
+
+- name: Install django-globus-app requirements
+  pip:
+    requirements: "/backend/requirements.txt"
+    virtualenv: "/venv/"
+  notify: restart gunicorn
+
+#################################
+# Workaround: this requires a fix in django-globus-portal-framework
+# we will prepare a fork of this repo and a pull request for upstream
+#################################
+
+- name: Copy magnifying glass in place
+  template:
+    src: mag_glass.svg
+    dest: /venv/lib/python3.9/site-packages/globus_portal_framework/static/globus-portal-framework/images/mag_glass.svg
+
+#################################
+# Workaround: this requires a fix in https://github.com/NickolausDS/cookiecutter-django-globus-app
+# we will prepare a fork of this repo and a pull request for upstream
+#################################
+
+- name: Copy local settings in place
+  template:
+    src: local.py.j2
+    dest: /backend/backend/settings/local.py
+
+- name: Run setup commands
+  shell:
+    chdir: /backend
+    cmd: "{{ item.command }}"
+  args:
+    executable: /bin/bash
+  with_items:
+      - command: "npm install"
+        creates: "/backend/node-modules"
+      - command: "npm rebuild node-sass"
+        creates: ""
+      - command: "npm run build-production"
+        creates: ""
+      - command: "/venv/bin/python /backend/manage.py makemigrations"
+        creates: ""
+      - command: "/venv/bin/python /backend/manage.py migrate"
+        creates: ""
+      - command: "/venv/bin/python /backend/manage.py collectstatic --settings=$DJANGO_SETTINGS_MODULE --noinput"
+        creates: ""
+
+- name: Create gunicorn supervisor config
+  template:
+    src: gunicorn.conf.j2
+    dest: /etc/supervisor/conf.d/gunicorn.conf
+  notify: restart gunicorn
+
+# /venv/bin/gunicorn backend.wsgi --env DJANGO_SETTINGS_MODULE=backend.settings.base --name globus-portal-app --bind 0.0.0.0:80 --workers 2 --log-level info --chdir /backend
+
+# - name: Install node requirements
+#   shell:
+#     chdir: /backend
+#     cmd: "{{ command }}"
+#     vars:
+#       command:
+#         - npm install
+#         - npm rebuild node-sass
+#         - npm run build-production

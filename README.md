@@ -64,7 +64,7 @@ docker run -d -t --name=globus-portal -p 8080:80 python:3.9-slim-bullseye
 10. if so, we're ready to run the role which will bring up the image
 ```
 cd $WORK_DIR/data-transfer-bootstrap
-ansible-playbook --connection docker --inventory inventory docker.yml
+ansible-playbook --connection docker --inventory inventory playbooks/docker.yml
 ```
 
 11. Use a brower to deal check that the application is running
@@ -98,19 +98,33 @@ customize the [Jinja2](#https://jinja.palletsprojects.com/en/2.10.x/templates/) 
 Customizable templates are stored in `templates` directory. Each template name is linked in the
 [Ansible Settings File](#the-settings-file). The current files in the templates directory are:
 
-#### Header Template
+#### Header Block Template
+
+This is the header block on all pages. Most installations will want to customize this, to match the look and feel of your organization or team.
 
 ```
 templates/header.html 
 ```
 
-#### Footer Template
+#### Footer Block Template
+
+This is the footer block on all pages. Most installations will want to customize this, to match the look and feel of your organization or team.
 
 ```
 templates/footer.html 
 ```
 
+#### Base Template
+
+This page is the "framework" that all other pages will use to display their content. It's the "base" page that all others "inherit" from.
+
+```
+templates/base.html
+```
+
 #### Main Page
+
+This page is the landing / main / index.html page for the site.
 
 ```
 templates/main.html
@@ -118,22 +132,52 @@ templates/main.html
 
 ##### Main Page: "Getting Started" block
 
+This block allows you to override the "getting started" block, if needed.
+
 ```
-templates/getting_started.html
+templates/getting_started_block.html
 ```
 
 ##### Main Page: "Documentation" block
 
+This block allows you to override the "documentation" block, if needed.
+
 ```
-templates/documentation.html
+templates/documentation_block.html
 ```
 
 #### Transfer Page
+
+This is the page that allows users to initiate a transfer
 
 ```
 templates/transfers.html
 ```
 
+#### Documentation Page
+
+This page shows a documentation overview and documentation sections. The URLs correspond to the names of files in the [Individual Documentation Sections](#individual-documentation-sections). When a user visits `/documentation/`, they see `templates/documentation/overview.html`, at `/documentation/transfers/` they see `templates/documentation/transfers.html`.
+
+```
+templates/documentation.html
+```
+
+#### Individual Documentation Sections
+
+These are all stored in the `templates/documentation` directory.
+
+```
+templates/documentation/overview.html
+templates/documentation/transfers.html
+```
+
+### Re-deploying Templates
+
+During the lifecycle of your site, you will likely need to deploy templates multiple times to "get them right." We made a special shortcut for this workflow to speed things up:
+
+```
+ansible-playbook --connection docker --inventory inventory playbooks/templates.yml
+```
 
 ## The Settings File
 

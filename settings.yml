@@ -43,35 +43,35 @@ colors:
 # over the layout of the site and its functionality.
 templates:
   - name: Base template
-    template: base.html
+    template: ../templates/base.html
     destination: /backend/templates/globus-portal-framework/v2/base.html
   - name: Logo File
-    template: identity/logo.png
-    destination: /backend/static/globus-portal-framework/v2/components/documentation/overview.html
+    template: ../templates/identity/logo.png
+    destination: /backend/static/
   - name: Header Block Template
-    template: header.html
+    template: ../templates/header.html
     destination: /backend/templates/globus-portal-framework/v2/components/base-nav.html
   - name: Footer Block Template
-    template: footer.html
+    template: ../templates/footer.html
     destination: /backend/templates/globus-portal-framework/v2/components/footer.html
   - name: Main Page template
-    template: main.html
+    template: ../templates/main.html
     destination: /backend/templates/globus-portal-framework/v2/landing-page.html
   - name: Transfer Page
-    template: transfers.html
-    destination: /backend/templates/globus-portal-framework/v2/components/transfers/home.html
+    template: ../templates/transfers.html
+    destination: /backend/templates/globus-portal-framework/v2/components/transfer/home.html
   - name: Getting Started Block Template
-    template: getting_started_block.html
+    template: ../templates/getting_started_block.html
     destination: /backend/templates/globus-portal-framework/v2/components/getting_started_block.html
   - name: Documentation Block
-    template: documentation_block.html
+    template: ../templates/documentation_block.html
     destination: /backend/templates/globus-portal-framework/v2/components/documentation_block.html
   - name: Documentation Page
-    template: documentation.html
+    template: ../templates/documentation.html
     destination: /backend/templates/globus-portal-framework/v2/components/documentation.html
   - name: Documentation Overview
-    template: documentation/overview.html
+    template: ../templates/documentation/overview.html
     destination: /backend/templates/globus-portal-framework/v2/components/documentation/overview.html
   - name: Documentation on Transfers
-    template: documentation/transfers.html
+    template: ../templates/documentation/transfers.html
     destination: /backend/templates/globus-portal-framework/v2/components/documentation/overview.html

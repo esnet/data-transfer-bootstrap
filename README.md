@@ -64,7 +64,7 @@ docker run -d -t --name=globus-portal -p 8080:80 python:3.9-slim-bullseye
 10. if so, we're ready to run the role which will bring up the image
 ```
 cd $WORK_DIR/data-transfer-bootstrap
-ansible-playbook --connection docker --inventory ansible/inventory ansible/docker.yml
+ansible-playbook --connection docker --inventory inventory docker.yml
 ```
 
 11. Use a brower to deal check that the application is running
@@ -89,14 +89,14 @@ TODO
 ## Customizing the UI
 
 This project is heavily customizable. While you can customize many details about the UI using the
-[Ansible Settings File](#the-ansible-settings-file), your institution may want to change the
+[Ansible Settings File](#the-settings-file), your institution may want to change the
 header, footer, some, or all of the content presented on the site. To do this, you will need to
 customize the [Jinja2](#https://jinja.palletsprojects.com/en/2.10.x/templates/) HTML templates listed below
 
 ### Template locations
 
 Customizable templates are stored in `templates` directory. Each template name is linked in the
-[Ansible Settings File](#the-ansible-settings-file). The current files in the templates directory are:
+[Ansible Settings File](#the-settings-file). The current files in the templates directory are:
 
 #### Header Template
 
@@ -135,7 +135,7 @@ templates/transfers.html
 ```
 
 
-## The Ansible Settings File
+## The Settings File
 
 TODO
 

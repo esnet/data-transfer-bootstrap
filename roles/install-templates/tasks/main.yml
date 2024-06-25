@@ -1,3 +1,11 @@
 ---
+- name: Read in Variable Values from settings.yml
+  include_vars:
+    file: ../../settings.yml
+    name: settings
+
 - name: Install Templates
-  
+  copy:
+    src: "{{ item.template }}"
+    dest: "{{ item.destination }}"
+  with_items: "{{ settings.templates }}"

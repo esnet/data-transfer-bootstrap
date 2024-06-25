@@ -1,1 +1,29 @@
-documentation.html
+{% extends "globus-portal-framework/v2/base.html" %} 
+{% load static is_active %} 
+
+
+{% block breadcrumb_items %}
+<li class="breadcrumb-item">
+  <a class="h5" href="{% url 'landing-page' %}">{{globus_portal_framework.project_title}}</a>
+</li>
+<li class="breadcrumb-item active"><a class="h5">Documentation</a></li>
+{% endblock %} 
+
+{% block body %}
+<div class="row">
+  <div class="col">
+    <h2 class="text-center mt-3 mb-5">{{project_title}}</h2>
+  </div>
+</div>
+
+<div class="row mb-5">
+  <div class="col"></div>
+  <div class="col-10">
+    <div>
+      <h1>Documentation</h1>
+      More content goes here.
+    </div>
+  </div>
+  <div class="col"></div>
+</div>
+{% endblock %}

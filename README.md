@@ -22,7 +22,8 @@ export WORK_DIR=~/work
 
 2. Clone this repo
 ```
-git clone git@github.com:esnet/data-transfer-bootstrap.git $WORK_DIR
+cd $WORK_DIR
+git clone git@github.com:esnet/data-transfer-bootstrap.git
 ```
 
 3. Create a virtualenv for installing ansible
@@ -47,7 +48,7 @@ pip install ansible
 
 7. Deactivate virtual environment
 ```
-deativate
+deactivate
 ```
 
 8. Re-activate the ansible venv

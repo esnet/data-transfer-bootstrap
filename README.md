@@ -6,10 +6,10 @@ This ansible role is intended to redistribute a collection of best practices sur
 
 This ansible role can be installed or used in a number of ways:
 
-- Install to Docker
-- Publish Docker Image
-- Install to VM
-- Publish Vagrant Box
+- [Install to Docker](#install-to-docker)
+- [Publish Docker Image](#publish-docker-image)
+- [Install to VM](#install-to-vm)
+- [Publish Vagrant Box](#publish-vagrant-box)
 
 If you want to install directly to a VM, you should use the "Install to VM" instructions below.
 
@@ -85,6 +85,55 @@ TODO
 ### Publish Vagrant Box
 
 TODO
+
+## Customizing the UI
+
+This project is heavily customizable. While you can customize many details about the UI using the
+[Ansible Settings File](#the-ansible-settings-file), your institution may want to change the
+header, footer, some, or all of the content presented on the site. To do this, you will need to
+customize the [Jinja2](#https://jinja.palletsprojects.com/en/2.10.x/templates/) HTML templates listed below
+
+### Template locations
+
+Customizable templates are stored in `templates` directory. Each template name is linked in the
+[Ansible Settings File](#the-ansible-settings-file). The current files in the templates directory are:
+
+#### Header Template
+
+```
+templates/header.html 
+```
+
+#### Footer Template
+
+```
+templates/footer.html 
+```
+
+#### Main Page
+
+```
+templates/main.html
+```
+
+##### Main Page: "Getting Started" block
+
+```
+templates/getting_started.html
+```
+
+##### Main Page: "Documentation" block
+
+```
+templates/documentation.html
+```
+
+#### Transfer Page
+
+```
+templates/transfers.html
+```
+
 
 ## The Ansible Settings File
 

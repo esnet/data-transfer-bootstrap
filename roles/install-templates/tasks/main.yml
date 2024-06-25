@@ -4,6 +4,12 @@
     file: ../../settings.yml
     name: settings
 
+- name: Ensure Directories Exist
+  file:
+    path: "{{ item.destination | dirname }}"
+    state: directory
+  with_items: "{{ settings.templates }}"
+
 - name: Install Templates
   copy:
     src: "{{ item.template }}"

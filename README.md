@@ -22,7 +22,7 @@ export WORK_DIR=~/work
 
 2. Clone this repo
 ```
-git clone git@github.com:jkafader-esnet/data-transfer-bootstrap $WORK_DIR
+git clone git@github.com:esnet/data-transfer-bootstrap.git $WORK_DIR
 ```
 
 3. Create a virtualenv for installing ansible

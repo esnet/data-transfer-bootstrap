@@ -2,7 +2,19 @@
 
 This ansible role is intended to redistribute a collection of best practices surrounding the Globus "Django Globus Portal Framework" and various related work, including cookiecutter install scripts
 
-## Install Targets
+## Topics
+
+- [Installation](#installation)
+- [Customization](#customization)
+- [Settings](#settings)
+  - [Required Settings](#required-settings)
+
+## Installation
+
+Generally, this role can be used to install the data portal into a number of targets. See [Installation Targets](#installation-targets) to
+select the target that will work best for your situation.
+
+### Installation Targets
 
 This ansible role can be installed or used in a number of ways:
 
@@ -86,7 +98,7 @@ TODO
 
 TODO
 
-## Customizing the UI
+## Customization
 
 This project is heavily customizable. While you can customize many details about the UI using the
 [Ansible Settings File](#the-settings-file), your institution may want to change the
@@ -184,10 +196,6 @@ ansible-playbook --connection docker --inventory inventory playbooks/templates.y
 TODO
 
 ### Required Settings
-
-TODO
-
-#### Globus Settings
 
 Globus settings are required for this ansible role to function. Generally, we'll use the `globus` command line tool to determine these settings
 

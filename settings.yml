@@ -13,8 +13,11 @@ administrator:
 
 # Project-specific settings
 project:
-  name: "My Project's Data Transfer Portal"
-  description: "A Site to Initiate Globus Data Transfers for My Project"
+  name: "Globus Data Transfer Hub"
+  description: "The Globus Data Transfer Hub streamlines high-speed data transfers for your project. 
+  This portal allows you to initiate secure, reliable  file transfers between authorized Globus source/destination points,
+  browse datasets for transfers and monitor transfer progress. The Globus Data Transfer Hub accelerates research 
+  workflows and enhancing collaboration by providing a centralized access point to facilitate data movement."
   version: "0.1.0"
 
 # Globus settings. To determine these, See README.md
@@ -26,16 +29,41 @@ globus:
     - id: null
       name: Example collection
       description: This collection is included as an example.
+    - id: null
+      name: Example collection
+      description: This collection is included as an example.
+    - id: null
+      name: Example collection
+      description: This collection is included as an example.
 
 # Styling data
 colors:
   header: "#333333"
-  primary: "#AAAAFF"
-  secondary: "#AAAAAA"
+  primary: "#EAEBEF"
+  secondary: "#49C5DC"
+  white: "#FFFFFF"
   surfaces:
     - "#FFFFFF"
     - "#EEEEEE"
     - "#DDDDDD"
+
+# Logo - All logo should be in the static directory
+logo: "static/Fasterdata_Logo.svg"
+
+# Customization - Add customizable content - further edit customization.html
+customization:
+  section: "Ex. Meet Our Teammates"
+  teammates:
+    - name: "John Doe"
+      email: "manager@example.com"
+      position: Manager
+    - name: "John Doe"
+      email: "manager@example.com"
+      position: Manager
+    - name: "John Doe"
+      email: "manager@example.com"
+      position: Manager
+
 
 # HTML templates (UI partials)
 # these paths are relative to this ansible role.
@@ -45,9 +73,6 @@ templates:
   - name: Base template
     template: ../templates/base.html
     destination: /backend/templates/globus-portal-framework/v2/base.html
-  - name: Logo File
-    template: ../templates/identity/logo.png
-    destination: /backend/static/
   - name: Header Block Template
     template: ../templates/header.html
     destination: /backend/templates/globus-portal-framework/v2/components/base-nav.html
@@ -75,3 +100,33 @@ templates:
   - name: Documentation on Transfers
     template: ../templates/documentation/transfers.html
     destination: /backend/templates/globus-portal-framework/v2/components/documentation/overview.html
+  - name: Global Stylesheet
+    template: ../templates/style.css
+    destination: /backend/static/
+  - name: Illustration
+    template: ../templates/identity/illustration.svg
+    destination: /backend/static/
+  - name: Pin File
+    template: ../templates/identity/pin.svg
+    destination: /backend/static/
+  - name: Customization Block Template
+    template: ../templates/customization.html
+    destination: /backend/templates/globus-portal-framework/v2/components/ 
+
+static: 
+  - name: Logo File
+    template: ../templates/identity/Fasterdata_Logo.svg
+    destination: /backend/static/
+  - name: Transfer Page Image
+    template: ../templates/identity/transferpage.jpg
+    destination: /backend/static/  
+  - name: Berkeley Lab Footer Badge
+    template: ../templates/identity/Berkeley_Lab-footer-badge.png
+    destination: /backend/static/ 
+  - name: Transfer Page Image
+    template: ../templates/identity/DOE_SC_footer-badge.png
+    destination: /backend/static/   
+
+
+
+

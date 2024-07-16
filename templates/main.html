@@ -6,16 +6,27 @@
 {% endblock %} 
 
 {% block breadcrumb_items %}
-<li class="breadcrumb-item">
-  <a class="h5" href="{% url 'landing-page' %}">{{globus_portal_framework.project_title}}</a>
-</li>
-<li class="breadcrumb-item active"><a class="h5">About</a></li>
+
 {% endblock %} 
 
 {% block body %}
 <div class="row">
-  <div class="col">
-    <h2 class="text-center mt-3 mb-5">{{project_title}}</h2>
+  <div class="col-md-6">
+    <img src=[[settings.logo]] alt="Company Logo" class="main-logo">
+    <h3 class = "project-left">Welcome to [[settings.project.name]]</h3>
+    <p class="description-left">
+      [[settings.project.description]]
+    </p>
+
+    <a href="{% url 'social:begin' 'globus' %}" style = "color:black">
+      <button class="login-button">Login</button>
+    </a>
+
+  </div>
+
+
+  <div class="col-md-6">
+    <img src = "static/illustration.svg" alt = "Data Transfer Hub Illustration" class = "main-illustration">
   </div>
 </div>
 
@@ -24,21 +35,35 @@
   <div class="col-10">
     <div>
       <p class="lead font-weight-bolder">
-        {% block getting_started %}
-        {% index_template 'globus-portal-framework/v2/components/getting_started_block.html' as getting_started %}
-        {% include getting_started %}
-        {% endblock %}
-      </p>
-    </div>
-    <div>
-      <p class="lead font-weight-bolder">
         {% block documentation %}
         {% index_template 'globus-portal-framework/v2/components/documentation_block.html' as documentation %}
         {% include documentation %}
         {% endblock %}
       </p>
     </div>
+    <br>
+    <br>
+    <div>
+      <p class="lead font-weight-bolder">
+        {% block getting_started %}
+        {% index_template 'globus-portal-framework/v2/components/getting_started_block.html' as getting_started %}
+        {% include getting_started %}
+        {% endblock %}
+      </p>
+    </div>
+    <br>
+    <br>
+    <div>
+      <p class="lead font-weight-bolder">
+        {% block customization %}
+        {% index_template 'globus-portal-framework/v2/components/customization.html' as customization %}
+        {% include customization %}
+        {% endblock %}
+      </p>
+    </div>
   </div>
   <div class="col"></div>
 </div>
+<br>
+<br>
 {% endblock %}

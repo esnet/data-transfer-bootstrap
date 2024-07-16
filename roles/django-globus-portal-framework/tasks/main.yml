@@ -94,6 +94,7 @@
     src: cookiecutter.yml.j2
     dest: /root/cookiecutter.yml
 
+
 - name: Install django-globus-app via Cookiecutter
   shell:
     chdir: /

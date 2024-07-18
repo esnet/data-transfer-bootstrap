@@ -92,7 +92,70 @@ TODO
 
 ### Install to VM
 
-TODO
+1. Assumption: You use ~/work for work-related files
+```
+export WORK_DIR=~/work
+```
+
+2. Clone this repo
+```
+cd $WORK_DIR
+git clone git@github.com:esnet/data-transfer-bootstrap.git
+```
+
+3. Create a virtualenv for installing ansible
+```
+python3 -m venv $WORK_DIR/ansible-venv
+```
+
+4. Activate the Ansible virtualenv
+```
+source $WORK_DIR/ansible-venv/bin/activate
+```
+
+5. Install ansible
+```
+pip install ansible
+```
+
+6. Deactivate virtual environment
+```
+deactivate
+```
+
+7. Re-activate the ansible venv
+```
+source $WORK_DIR/ansible-venv/bin/activate
+```
+
+8. Edit the `[development]` or `[production]` hosts in the inventory file. (Replace `vi` with an editor of your choice if desired)
+
+```
+vi inventory
+```
+
+9. Install ansible role to development hosts from inventory.
+```
+cd $WORK_DIR/data-transfer-bootstrap
+ansible-playbook --inventory inventory playbooks/development.yml
+```
+
+10. Check your work by visiting your development host. You should see a data transfer site running on the HTTPS port, 443.
+
+11. Make any changes or customizations needed, redeploying regularly to your development host
+```
+cd $WORK_DIR/data-transfer-bootstrap
+ansible-playbook --inventory inventory playbooks/development.yml
+```
+
+12. Install ansible role to production hosts when ready.
+```
+cd $WORK_DIR/data-transfer-bootstrap
+ansible-playbook --inventory inventory playbooks/production.yml
+```
+
+13. Check your work by visiting your production host on HTTPS.
+
 
 ### Publish Vagrant Box
 

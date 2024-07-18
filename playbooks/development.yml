@@ -1,0 +1,10 @@
+---
+
+- name: Install Globus Portal [Development Hosts]
+  hosts: development
+  vars_files:
+      - ../vars/all.yml
+  roles:
+    - role: ../roles/django-globus-portal-framework
+    - role: ../roles/install-templates
+  become: true

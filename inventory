@@ -1,2 +1,5 @@
 [docker]
 globus-portal
+
+[development]
+mrdp.mooo.com

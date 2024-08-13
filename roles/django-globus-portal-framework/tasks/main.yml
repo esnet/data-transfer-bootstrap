@@ -141,6 +141,16 @@
   template:
     src: cookiecutter.yml.j2
     dest: /root/cookiecutter.yml
+  register:
+    cookiecutter_settings
+
+- name: Remove exising application for re-render if cookiecutter settings have changed
+  file:
+      path: /backend
+      state: absent
+  when:
+    cookiecutter_settings.changed
+  notify: restart gunicorn
 
 - name: Install django-globus-app via Cookiecutter
   shell:
@@ -148,6 +158,7 @@
     cmd: "source /venv/bin/activate && cookiecutter https://github.com/NickolausDS/cookiecutter-django-globus-app --no-input --config-file /root/cookiecutter.yml"
     creates: "/backend"
     executable: /bin/bash
+  notify: restart gunicorn
 
 - name: Install django-globus-app requirements
   pip:

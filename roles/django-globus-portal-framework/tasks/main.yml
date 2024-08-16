@@ -97,7 +97,7 @@
 - name: Install django-globus-app via Cookiecutter
   shell:
     chdir: /
-    cmd: "source /venv/bin/activate && cookiecutter https://github.com/NickolausDS/cookiecutter-django-globus-app --no-input --config-file /root/cookiecutter.yml"
+    cmd: "source /venv/bin/activate && cookiecutter https://github.com/jkafader-esnet/cookiecutter-django-globus-app --no-input --config-file /root/cookiecutter.yml"
     creates: "/backend"
   args:
     executable: /bin/bash

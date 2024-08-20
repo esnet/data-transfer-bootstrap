@@ -137,6 +137,30 @@
     name: cookiecutter
     virtualenv: "{{ venv_path }}"
 
+- name: Check latest remote commit hash
+  shell:
+    executable: /bin/bash
+    cmd: "git ls-files https://github.com/jkafader-esnet/cookiecutter-django-globus-app | grep main | awk '{print $1}' > /latest.hash"
+
+- name: Stat latest commit hash file
+  stat: /latest.hash
+  register: latest_hash
+
+- name: Stat last commit hash file
+  stat: /last.hash
+  register: last_hash
+
+- name: Detect whether upstream_has_changed
+  set_fact:
+    upstream_has_changed: latest_hash.stat.checksum != last_hash.stat.checksum
+
+- name: Overwrite last commit hash file if upstream_has_changed
+  shell:
+    executable: /bin/bash
+    cmd: "cp /latest.hash /last.hash"
+  when:
+    upstream_has_changed
+
 - name: Render cookiecutter settings file
   template:
     src: cookiecutter.yml.j2
@@ -144,12 +168,12 @@
   register:
     cookiecutter_settings
 
-- name: Remove exising application for re-render if cookiecutter settings have changed
+- name: Remove exising application for re-render if cookiecutter settings have changed or if upstream_has_changed
   file:
       path: /backend
       state: absent
   when:
-    cookiecutter_settings.changed
+    cookiecutter_settings.changed or upstream_has_changed
   notify: restart gunicorn
 
 - name: Install django-globus-app via Cookiecutter

@@ -13,15 +13,26 @@
 <div class="row">
   <div class="col-md-6">
     <img src=[[settings.logo]] alt="Company Logo" class="main-logo">
+
+    {%if globus_portal_framework.auth_enabled and request.user.is_authenticated %}
+    <h3 class = "project-left">Welcome Back to [[settings.project.name]]</h3>
+    <p class="description-left">
+      [[settings.project.description]]
+    </p>
+    <a href="{% url 'transfer-page' %}" style = "color:black">
+      <button class="login-button">Start Transfer</button>
+    </a>
+
+    {% elif globus_portal_framework.auth_enabled %}
     <h3 class = "project-left">Welcome to [[settings.project.name]]</h3>
     <p class="description-left">
       [[settings.project.description]]
     </p>
-
     <a href="{% url 'social:begin' 'globus' %}" style = "color:black">
       <button class="login-button">Login</button>
     </a>
 
+    {% endif %}
   </div>
 
 

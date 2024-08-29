@@ -33,7 +33,8 @@
 
           {%if globus_portal_framework.auth_enabled and request.user.is_authenticated %}
           <li class="breadcrumb-item"><a href="{% url 'logout' %}?next=/" style = "color:black">Logout</a></li>
-          <li class="breadcrumb-item"><a class="nav-link" href="/" style = "color:black">{{request.user.username }}</a></li>
+          <li class="breadcrumb-item"><a href="/" style = "color:black">{{request.user.username}}</a></li>
+          
           {% elif globus_portal_framework.auth_enabled %}
           <li class="breadcrumb-item"><a href="{% url 'social:begin' 'globus' %}" style = "color:black">
             <img src="{% static 'images/globus.png' %}" height="32px" width="32px">

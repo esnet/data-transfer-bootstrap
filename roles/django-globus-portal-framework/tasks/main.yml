@@ -138,16 +138,19 @@
     virtualenv: "{{ venv_path }}"
 
 - name: Check latest remote commit hash
-  shell:
+  ansible.builtin.shell:
     executable: /bin/bash
     cmd: "git ls-files https://github.com/jkafader-esnet/cookiecutter-django-globus-app | grep main | awk '{print $1}' > /latest.hash"
 
 - name: Stat latest commit hash file
-  stat: /latest.hash
+  ansible.builtin.stat: 
+    path: /latest.hash
   register: latest_hash
 
+
 - name: Stat last commit hash file
-  stat: /last.hash
+  ansible.builtin.stat: 
+    path: /last.hash
   register: last_hash
 
 - name: Detect whether upstream_has_changed

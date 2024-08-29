@@ -1,8 +1,9 @@
-
 body {
     max-width: 100%;
     overflow-x: hidden;
+    height: 100%;
 }
+
 .navbar{
     display: flex;
     background-color: [[settings.colors.header]];
@@ -11,6 +12,7 @@ body {
 
 .nav-container {
     display: flex;
+    flex-wrap: nowrap;
     justify-content: flex-end;
     background-color: [[settings.colors.primary]];
     height: 50px;
@@ -20,22 +22,25 @@ body {
 .navbar-brand {
     margin-top:auto;
     margin-bottom: auto;
-    margin-left: 5px;
     height: 80px;
 }
 
 .breadcrumb {
-    padding: 10;
-    margin: 10;
+    padding: 10px 0; 
+    margin-left: 20px; 
+    margin-right: 20px;
     background-color: transparent;
+    min-width: 100%;
 }
 .breadcrumb-item {
     display: inline-block;
-    margin-left: 15px;
 }
+
 .breadcrumb-item + .breadcrumb-item::before {
     content: "|";  
     padding: 0 5px;
+    margin-left: 20px; 
+    margin-right: 20px;
 }
 
 .body {
@@ -179,7 +184,7 @@ h3.project-left{
 }
 
 .footer-container {
-    margin-left: 40%;
+    margin-left: 30%;
     display: flex;
     text-align: center;
 }
@@ -193,4 +198,18 @@ h3.project-left{
     border-radius: 10px;
     padding: 20px;
     text-align: center;
+}
+
+.mySelect {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }

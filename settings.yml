@@ -2,14 +2,14 @@
 # Hostname. Used to determine the FQDN, for server settings, and in Django's settings file
 # Django will disallow any HTTP requests not sent to this domain name ("localhost" is also allowed for convenience)
 # this hostname is also used for OIDC return, so it must be set to what your browser actually displays in the title bar.
-hostname: "test.example.com"
+hostname: "mrdp.mooo.com"
 # Institution name. This will render in templates and settings in various places.
-institution_name: Example Institution
+institution_name: ESnet Data Portal
 
 # Administrator name and email
 administrator:
   name: "Local Administrator Full Name"
-  email: "administrator@example.com"
+  email: "jkafader@es.net"
 
 # Project-specific settings
 project:
@@ -21,20 +21,21 @@ project:
   version: "0.1.0"
 
 # Globus settings. To determine these, See README.md
+# Globus settings. To determine these, See README.md
 globus:
-  client_id: null
-  secret_key: null
-  search_index: null
+  client_id: d60e6bbb-4a6c-4e50-860d-aca3af3c1b9b
+  secret_key: GkDthqFs6kOE/V/0GCsdSSqFUNUBoS0upecBnkCkkUA=
+  search_index: 25ad7f95-1c21-4f8e-a478-ebdfbdfba7ec
   collections:
-    - id: null
-      name: Example collection
-      description: This collection is included as an example.
-    - id: null
-      name: Example collection
-      description: This collection is included as an example.
-    - id: null
-      name: Example collection
-      description: This collection is included as an example.
+    - id: 64b7e306-edb7-4b17-8b25-9033517eca8b
+      name: ESnet Read-Only Test DTN at Washington
+      description: Anonymous read-only Globus test host in Washington, DC
+    - id: ece400da-0182-4777-91d6-27a1808f8371
+      name: ESnet Read-Only Test DTN at Starlight in Chicago
+      description: Anonymous read-only Globus test host at Starlight in Chicago
+    - id: 8409a10b-de09-4670-a886-2c0b33f0fe25
+      name: ESnet Read-Only Test DTN in Sunnyvale
+      description: Anonymous read-only Globus test host in Sunnyvale, CA
 
 # Styling data
 colors:
@@ -48,11 +49,11 @@ colors:
     - "#DDDDDD"
 
 # Logo - All logo should be in the static directory
-logo: "static/Fasterdata_Logo.svg"
+logo: "../../static/Fasterdata_Logo.svg"
 
 # Customization - Add customizable content - further edit customization.html
 customization:
-  section: "Ex. Meet Our Teammates"
+  section: "Meet Our Team"
   teammates:
     - name: "John Doe"
       email: "manager@example.com"
@@ -84,7 +85,7 @@ templates:
     destination: /backend/templates/globus-portal-framework/v2/landing-page.html
   - name: Transfer Page
     template: ../templates/transfers.html
-    destination: /backend/templates/globus-portal-framework/v2/components/transfer/home.html
+    destination: /backend/templates/globus-portal-framework/v2/components/transfer/list.html
   - name: Getting Started Block Template
     template: ../templates/getting_started_block.html
     destination: /backend/templates/globus-portal-framework/v2/components/getting_started_block.html
@@ -118,14 +119,20 @@ static:
     template: ../templates/identity/Fasterdata_Logo.svg
     destination: /backend/static/
   - name: Transfer Page Image
-    template: ../templates/identity/transferpage.jpg
+    template: ../templates/identity/transferpage.png
     destination: /backend/static/  
   - name: Berkeley Lab Footer Badge
     template: ../templates/identity/Berkeley_Lab-footer-badge.png
     destination: /backend/static/ 
   - name: Transfer Page Image
     template: ../templates/identity/DOE_SC_footer-badge.png
-    destination: /backend/static/   
+    destination: /backend/static/ 
+  - name: Logo File
+    template: ../templates/identity/file.png
+    destination: /backend/static/
+  - name: Logo File
+    template: ../templates/identity/folder.png
+    destination: /backend/static/  
 
 
 

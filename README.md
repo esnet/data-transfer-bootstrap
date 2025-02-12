@@ -93,7 +93,8 @@ source $WORK_DIR/ansible-venv/bin/activate
 
 9. Start the target docker container, map port 80 in the container to localhost:8080
 ```
-docker run -d -t --name=globus-portal -p 8080:80 python:3.9-slim-bullseye
+docker build -t globus-portal .
+docker run -d -t --name=globus-portal -p 8080:80 globus-portal
 ```
 
 10. if so, we're ready to run the role which will bring up the image

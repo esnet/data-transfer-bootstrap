@@ -10,71 +10,58 @@
 {% endblock %} 
 
 {% block body %}
-<div class="row">
-  <div class="col-md-6">
-    <img src=[[settings.logo]] alt="Company Logo" class="main-logo">
 
-    {%if globus_portal_framework.auth_enabled and request.user.is_authenticated %}
-    <h3 class = "project-left">Welcome Back to [[settings.project.name]]</h3>
-    <p class="description-left">
-      [[settings.project.description]]
-    </p>
-    <a href="{% url 'transfer-page' %}" style = "color:black">
-      <button class="login-button">Start Transfer</button>
-    </a>
+  <div class="section">
+    <div class="subsection">
+      <img src=[[settings.secondary_logo]] alt="Company Logo" width="35%">
 
-    {% elif globus_portal_framework.auth_enabled %}
-    <h3 class = "project-left">Welcome to [[settings.project.name]]</h3>
-    <p class="description-left">
-      [[settings.project.description]]
-    </p>
-    <a href="{% url 'social:begin' 'globus' %}" style = "color:black">
-      <button class="login-button">Login</button>
-    </a>
+      {%if globus_portal_framework.auth_enabled and request.user.is_authenticated %}
+      <div class="landing-text">
+      <h3>Welcome Back to [[settings.project.name]]</h3>
+      <p class="description">[[settings.project.description]]</p>
+      <p class="description" style="font-style: italic;">[[settings.project.sub_description]]</p>
+      </div>
+      
+      <button class="login-button">
+        <a href="{% url 'transfer-page' %}" style = "color:black">Start Transfer</a>
+      </button>
 
-    {% endif %}
-  </div>
+      {% elif globus_portal_framework.auth_enabled %}
+      <div class="landing-text">
+      <h3>Welcome to [[settings.project.name]]</h3>
+      <p class="description">[[settings.project.description]]</p>
+      <p class="description" style="font-style: italic;">[[settings.project.sub_description]]</p>
+      </div>
+      
+      <button class="login-button">
+          <a href="{% url 'social:begin' 'globus' %}" style = "color:black">Login</a>
+      </button>
 
+      {% endif %}
+    </div>
 
-  <div class="col-md-6">
     <img src = "static/illustration.svg" alt = "Data Transfer Hub Illustration" class = "main-illustration">
   </div>
-</div>
 
-<div class="row mb-5">
-  <div class="col"></div>
-  <div class="col-10">
-    <div>
-      <p class="lead font-weight-bolder">
+    <div class="section">
         {% block documentation %}
         {% index_template 'globus-portal-framework/v2/components/documentation_block.html' as documentation %}
         {% include documentation %}
         {% endblock %}
-      </p>
     </div>
-    <br>
-    <br>
-    <div>
-      <p class="lead font-weight-bolder">
+    <div class="section">
         {% block getting_started %}
         {% index_template 'globus-portal-framework/v2/components/getting_started_block.html' as getting_started %}
         {% include getting_started %}
         {% endblock %}
-      </p>
     </div>
-    <br>
-    <br>
-    <div>
-      <p class="lead font-weight-bolder">
+    <div class="section">
         {% block customization %}
         {% index_template 'globus-portal-framework/v2/components/customization.html' as customization %}
         {% include customization %}
         {% endblock %}
-      </p>
     </div>
-  </div>
-  <div class="col"></div>
-</div>
-<br>
-<br>
+
+
+
 {% endblock %}

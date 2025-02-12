@@ -1,204 +1,217 @@
 body {
     max-width: 100%;
     overflow-x: hidden;
-    height: 100%;
-}
-
-.navbar{
-    display: flex;
-    background-color: [[settings.colors.header]];
-    height: 100px;
-}
-
-.nav-container {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: flex-end;
+    min-height: 100%;
     background-color: [[settings.colors.primary]];
-    height: 50px;
-    width: 100%;
 }
 
-.navbar-brand {
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: [[settings.colors.primary]];
+    height: 170px;
+    min-width: 100%;
+
+    padding: 8px 64px;
+    gap: 10px;
+}
+
+.header-logo {
     margin-top:auto;
     margin-bottom: auto;
     height: 80px;
 }
 
 .breadcrumb {
-    padding: 10px 0; 
-    margin-left: 20px; 
-    margin-right: 20px;
-    background-color: transparent;
-    min-width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 8px 64px;
+    gap: 48px;
+    border-radius: 0px;
+    background-color: [[settings.colors.header]];
 }
+
+
 .breadcrumb-item {
-    display: inline-block;
+    font-weight: 400;
+    font-size: 20px;
+    align-items: center;
 }
 
 .breadcrumb-item + .breadcrumb-item::before {
-    content: "|";  
-    padding: 0 5px;
-    margin-left: 20px; 
-    margin-right: 20px;
+    color: [[settings.colors.header]]; 
 }
 
-.body {
+
+.section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 48px 160px;
+    gap: 120px;
+
+    width: 100%;
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+
+
+.subsection {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 64px 0px;
+    gap: 36px;
 }
 
-h3.project-left{
+.landing-text {
     text-align: left;
-    padding: 10px;  
-    margin-top: 10px; 
-    margin-left: 20%;
+    color: #3B4147;
+    width: 90%;
 }
 
-.description-left {
-    text-align: left;
-    padding: 10px;  
-    margin-top: 10px;  
-    margin-left: 20%;
+.landing-text h3 {
+    font-size: 25px;
+    line-height: 30px;
+}
+
+.landing-text description {
+    font-size: 20px;
 }
 
 .login-button {
     background-color: [[settings.colors.secondary]];
+    color: #000000;
     border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    font-size: 16px;
-    border-radius: 5px;
-    margin-left: 50%;
+    font-size: 20px;
+    border-radius: 10px;
     transition: background-color 0.3s;  
-}
 
-.login-button:hover {
-    background-color: [[settings.colors.secondary]];
-}
-
-.main-logo {
     display: flex;
+    flex-direction: row;
     justify-content: center;
-    margin-top: 20%;
-    margin-bottom: 10%;
-    margin-left: 20%;
-    width: 70%;
-    height: 20%;
+    align-items: center;
+    padding: 10px 88px;
+    gap: 10px;
+
+    min-width: 229px;
+    min-height: 55px;
 }
+
 
 .main-illustration{
+    width: 35vw;
+    height: auto;
+}
+
+
+.graybox {
+    width: 80vw;
+
+    background-color: [[settings.colors.primary]];
+    border-radius: 40px;
+
     display: flex;
-    margin-top: 10%;
-    margin-bottom: 10%;
-    margin-left: 10%;
-    margin-right: 10%;
-    width: 70%;
-    max-width: 100%;
-    height: auto;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px;
+    gap: 10px;
+}
+
+.graybox h3 {
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+    color:[[settings.colors.header]];
+}
+
+.white {
+    background-color: #FFFFFF;
+    padding-bottom: 100px;
+}
+
+.datasets {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 40px;
+    min-width: 100%; /* Ensure it spans the full width */
+    gap: 36px;
+}
+
+.dataset {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 18px 0px;
+    gap: 32px; /* Space between items inside each .dataset */
+    flex: 1;
 }
 
 
-.documentation {
-    display: block;
-    margin: 0 auto;
-    width: 100%;
-    height: auto;
-    background-color: [[settings.colors.primary]];
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-}
-
-.dataset-center{
-    font-weight: 800;
-    font-style: normal;
-    margin-left: 10px;
-    margin-top: 10%;
-}
-
-.pin {
-    height: 40px;
-    margin-top: 10%;
-    text-align: center;
-}
-
-
-.getting-started {
-    display: block;
-    margin: 0 auto;
-    width: 100%;
-    height: auto;
-    background-color: [[settings.colors.primary]];
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-}
-
-.getting-started h3 {
-    font-size: 30px;
-    margin-bottom: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
-
-.getting-started h4 {
-    font-size: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
+.description-text {
+    text-align: left;
+    color: #3B4147;
     text-align: left;
 }
 
-.getting-started p {
-    font-size: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
-    text-align: left;
+.description-text h2{
+    font-weight: 600;
+    font-size: 18px;
 }
 
-.getting-started ul {
-    margin-top: 20px;
-    margin-bottom: 30px;
-    margin-left: 20px;
-    margin-right: 20px;
-    text-align: left;
+.description-text p {
+    font-weight: 500;
+    font-size: 16px;
 }
 
-.transfer-page {
+
+.transfer-demo {
+    box-sizing: border-box;
+    border-radius: 40px;
+    border: 5px solid [[settings.colors.secondary]];
+
+    width: 335px;
+    height: 399.11px;
+}
+
+.team-mem-image-placeholder {
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
     height: 300px;
-    text-align: center;
+    border: 3px solid #62CAF5;
+    border-radius: 10px;
 }
 
 .footer {
-    margin-top:auto;
     width: 100%;
+    min-height: 200px;
     background-color: [[settings.colors.primary]];
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 32px 64px;
+    gap: 24px;
 }
 
 .footer-container {
-    margin-left: 30%;
     display: flex;
-    text-align: center;
+    flex-direction: row;
+    gap: 48px;
 }
 
-.customization {
-    display: block;
-    margin: 0 auto;
-    width: 100%;
-    height: auto;
-    background-color: [[settings.colors.primary]];
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-}
 
 .mySelect {
     display: block;

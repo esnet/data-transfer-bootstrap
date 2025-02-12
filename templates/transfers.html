@@ -10,38 +10,40 @@
 {% endblock headextras %}
 
 {%block body%}
-<div class="row">
-    <div style="margin-top: 30px; margin-left: auto; margin-right: auto; width:1303.33px">
-            <h5>Source Node</h5>
-            <select id="mySelect" class="form-control">
-
-                {% if collection_id %}
-                    <option value="{{collection_id}}"> {{collection_name}} </option>
-
-                {%elif collection_id is null %}
-                    <option value="" disabled selected>Choose a collection</option>
-                    {% for collection in collections %}
-                        <option value= "{{collection.id}}">{{collection.name}}</option>
-                    {% empty %}
-                    <div class="alert alert-primary" role="alert">
-                        No collections configured for this portal! Check settings to add them.
-                    </div>
-                    {% endfor %}
-
-                {% endif %}
-            </select>
+    <div class="section">
+        <h4 style="text-align: center;">Globus Data Transfer Hub</h4>
     </div>
-</div>
+    <div class="row container-fluid">
+        <div class="col-10 mb-4" style="margin-left: auto; margin-right: auto;">
+                <h5>Select Source Node</h5>
+                <select id="mySelect" class="form-control">
+
+                    {% if collection_id %}
+                        <option value="{{collection_id}}"> {{collection_name}} </option>
+
+                    {%elif collection_id is null %}
+                        <option value="" disabled selected>Choose a collection</option>
+                        {% for collection in collections %}
+                            <option value= "{{collection.id}}">{{collection.name}}</option>
+                        {% empty %}
+                        <div class="alert alert-primary" role="alert">
+                            No collections configured for this portal! Check settings to add them.
+                        </div>
+                        {% endfor %}
+
+                    {% endif %}
+                </select>
+        </div>
+    </div>
 
 <script id='transfer-config' type='application/json'>
     {
         "portalEndpointID": "{{ collection_id }}"
     }
 </script>
-
-<div id="transfer">
-    <!-- React components are mounted here -->
-</div>
+    <div id="transfer">
+        <!-- React components are mounted here -->
+    </div>
 <script src='/static/js/transfer/build/globus.js' type='application/javascript'></script>
 
 <script>

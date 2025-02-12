@@ -107,7 +107,7 @@ git clone git@github.com:esnet/data-transfer-bootstrap.git
 ```
 python3 -m venv $WORK_DIR/ansible-venv
 ```
-
+p
 4. Activate the Ansible virtualenv
 ```
 source $WORK_DIR/ansible-venv/bin/activate
@@ -131,6 +131,7 @@ source $WORK_DIR/ansible-venv/bin/activate
 8. Edit the `[development]` or `[production]` hosts in the inventory file. (Replace `vi` with an editor of your choice if desired)
 
 ```
+cd $WORK_DIR/data-transfer-bootstrap
 vi inventory
 ```
 

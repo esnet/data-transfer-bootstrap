@@ -24,34 +24,27 @@
     {% index_template 'globus-portal-framework/v2/components/base-nav.html' as base_nav %}
     {% include base_nav %}
     {% endblock %}
-
+    <div class="white">
     {% block breadcrumbs %}
-    <div class="nav-container">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="mailto:[[settings.administrator.email]]" style = "color: black">Contact</a></li>
-
+    <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="mailto:[[settings.administrator.email]]" style = "color:white">Contact</a></li>
           {%if globus_portal_framework.auth_enabled and request.user.is_authenticated %}
-          <li class="breadcrumb-item"><a href="{% url 'logout' %}?next=/" style = "color:black">Logout</a></li>
-          <li class="breadcrumb-item"><a href="/" style = "color:black">{{request.user.username}}</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'logout' %}?next=/" style = "color:white">Logout</a></li>
+          <li class="breadcrumb-item"><a href="/" style = "color:white">{{request.user.username}}</a></li>
           
           {% elif globus_portal_framework.auth_enabled %}
-          <li class="breadcrumb-item"><a href="{% url 'social:begin' 'globus' %}" style = "color:black">
-            <img src="{% static 'images/globus.png' %}" height="32px" width="32px">
+          <li class="breadcrumb-item"><a href="{% url 'social:begin' 'globus' %}" style = "color:white">
                    Login
                 </a>
               </li>
               {% endif %}
-
-        </ol>
-      </nav>
-    </div>
+      </ol>
     {% endblock %}
 
     <!-- Page body -->
     {%block body%}
     {%endblock%}
-
+    </div>
     {% block footer %}
 
     {% index_template 'globus-portal-framework/v2/components/footer.html' as footer %}

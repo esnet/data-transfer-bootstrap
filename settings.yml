@@ -14,10 +14,9 @@ administrator:
 # Project-specific settings
 project:
   name: "Globus Data Transfer Hub"
-  description: "The Globus Data Transfer Hub streamlines high-speed data transfers for your project. 
-  This portal allows you to initiate secure, reliable  file transfers between authorized Globus source/destination points,
-  browse datasets for transfers and monitor transfer progress. The Globus Data Transfer Hub accelerates research 
-  workflows and enhancing collaboration by providing a centralized access point to facilitate data movement."
+  description: "The Globus Data Transfer Hub streamlines high-speed data transfers for your project."
+  sub_description: "A centralized access point to facilitate data movement, accelerating research workflows and enhancing collaboration."
+
   version: "0.1.0"
 
 # Globus settings. To determine these, See README.md
@@ -32,16 +31,16 @@ globus:
       description: Anonymous read-only Globus test host in Washington, DC
     - id: ece400da-0182-4777-91d6-27a1808f8371
       name: ESnet Read-Only Test DTN at Starlight in Chicago
-      description: Anonymous read-only Globus test host at Starlight in Chicago
+      description: Anonymous read-only Globus test host at Starlight Chicago
     - id: 8409a10b-de09-4670-a886-2c0b33f0fe25
       name: ESnet Read-Only Test DTN in Sunnyvale
       description: Anonymous read-only Globus test host in Sunnyvale, CA
 
 # Styling data
 colors:
-  header: "#333333"
+  header: "#343A40"
   primary: "#EAEBEF"
-  secondary: "#49C5DC"
+  secondary: "#62CAF5"
   white: "#FFFFFF"
   surfaces:
     - "#FFFFFF"
@@ -49,7 +48,8 @@ colors:
     - "#DDDDDD"
 
 # Logo - All logo should be in the static directory
-logo: "../../static/Fasterdata_Logo.svg"
+logo: "../../static/ESnet_Logo.png"
+secondary_logo: "../../static/ESnet_Logo_Sphere.png"
 
 # Customization - Add customizable content - further edit customization.html
 customization:
@@ -107,25 +107,25 @@ templates:
   - name: Illustration
     template: ../templates/identity/illustration.svg
     destination: /backend/static/
-  - name: Pin File
-    template: ../templates/identity/pin.svg
-    destination: /backend/static/
   - name: Customization Block Template
     template: ../templates/customization.html
     destination: /backend/templates/globus-portal-framework/v2/components/ 
 
 static: 
-  - name: Logo File
-    template: ../templates/identity/Fasterdata_Logo.svg
+  - name: Primary Logo File
+    template: ../templates/identity/ESnet_Logo.png
+    destination: /backend/static/
+  - name: Secondary Logo File
+    template: ../templates/identity/ESnet_Logo_Sphere.png
     destination: /backend/static/
   - name: Transfer Page Image
-    template: ../templates/identity/transferpage.png
+    template: ../templates/identity/Transfer_Page.png
     destination: /backend/static/  
   - name: Berkeley Lab Footer Badge
-    template: ../templates/identity/Berkeley_Lab-footer-badge.png
+    template: ../templates/identity/LBNL_Logo.png
     destination: /backend/static/ 
   - name: Transfer Page Image
-    template: ../templates/identity/DOE_SC_footer-badge.png
+    template: ../templates/identity/DOE_Logo.png
     destination: /backend/static/ 
   - name: Logo File
     template: ../templates/identity/file.png

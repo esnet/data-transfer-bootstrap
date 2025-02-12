@@ -119,7 +119,7 @@
   service:
       name: supervisor
       state: "stopped"
-  when: not ssl.stat.exists
+  when: "not ssl.stat.exists and \"docker\" not in group_names"
   notify: restart gunicorn
 
 - name: 'Get certificate'
@@ -246,14 +246,5 @@
     dest: /etc/supervisor/conf.d/gunicorn.conf
   notify: restart gunicorn
 
-# /venv/bin/gunicorn backend.wsgi --env DJANGO_SETTINGS_MODULE=backend.settings.base --name globus-portal-app --bind 0.0.0.0:80 --workers 2 --log-level info --chdir /backend
-
-# - name: Install node requirements
-#   shell:
-#     chdir: /backend
-#     cmd: "{{ command }}"
-#     vars:
-#       command:
-#         - npm install
-#         - npm rebuild node-sass
-#         - npm run build-production
+- name: Commit the build if we're in a docker environment
+  command: "docker commit globus-portal jkafader/globus-portal:ansible-build"

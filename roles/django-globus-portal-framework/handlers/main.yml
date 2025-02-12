@@ -8,3 +8,4 @@
       - state: stopped
       - state: started
   listen: "restart gunicorn"
+  when: "\"docker\" not in group_names"

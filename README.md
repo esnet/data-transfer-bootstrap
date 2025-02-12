@@ -18,14 +18,37 @@ select the target that will work best for your situation.
 
 This ansible role can be installed or used in a number of ways:
 
-- [Install to Docker](#install-to-docker)
-- [Publish Docker Image](#publish-docker-image)
-- [Install to VM](#install-to-vm)
-- [Publish Vagrant Box](#publish-vagrant-box)
+- [Install from Existing Docker Image](#install-from-existing-docker-image)
+- [Build and Publish Custom Docker Image](#build-and-publish-docker-image)
+- [Install to VM with Ansible](#install-to-vm-with-ansible)
 
 If you want to install directly to a VM, you should use the "Install to VM" instructions below.
 
-### Install to Docker
+### Install from existing Docker Image
+
+This is the simplest way to get started with this repo. Just:
+
+```
+docker run jkafader-esnet/globus-portal
+```
+
+Then point a brower to http://localhost:8080
+
+This image can be customized using docker mount points. See [Customization With Docker](#customization-with-docker) below.
+
+### Publishing for production
+
+If you're using the instructions for [Installing from an Existing Docker Image](#install-from-existing-docker-image),
+you'll need to use some type of reverse proxy (usually nginx or apache2) 
+with SSL encryption in front of the running docker image.
+
+Configuring a reverse proxy is outside the scope of this documentation, but
+a good guide can be found via google.
+
+
+### Build and publish Docker Image
+
+Generally, these instructions are for developers on this repo, or 
 
 1. Assumption: You use ~/work for work-related files
 ```
@@ -79,18 +102,31 @@ cd $WORK_DIR/data-transfer-bootstrap
 ansible-playbook --connection docker --inventory inventory playbooks/docker.yml
 ```
 
-11. Use a brower to deal check that the application is running
+11. Commit the ansible changes from the container to the image using `docker commit`
+```
+docker commit globus-portal
+```
+
+12. Kill the running docker container and restart it
+```
+docker stop globus-portal
+docker run globus-portal
+```
+
+13. Use a brower to deal check that the application is running
 
 http://localhost:8080
 
 
+14. After verifying that the image is working as desired, publish it to docker:
 
+```
+docker push esnet/globus-portal
+```
 
-### Publish Docker Image
+15. Users will now be able to follow instructions under [Install from Existing Docker Image](#install-from-existing-docker-image)
 
-TODO
-
-### Install to VM
+### Install to VM with Ansible
 
 1. Assumption: You use ~/work for work-related files
 ```
@@ -157,21 +193,42 @@ ansible-playbook --inventory inventory playbooks/production.yml
 13. Check your work by visiting your production host on HTTPS.
 
 
-### Publish Vagrant Box
+## Customization with Docker
 
-TODO
+This project is heavily customizable. The simplest way to get a running site is by 
+[Installing with the default Docker Image](#install-from-existing-docker-image). 
+However, this will serve a default site. This section gives some direction on 
+customizing the default docker image.
 
-## Customization
+### Docker Mount Points
+
+Docker supports the concept of "mounting" external files to the root filesystem
+within the docker container. The default image looks for files from a number of 
+mount points:
+
+- `/mnt/templates` Django/Jinja2 templates
+- `/mnt/static/fonts` Custom Fonts
+- `/mnt/static/images` Custom images
+- `/mnt/static/js` Custom Javascript
+
+Generally, users will first want to customize templates, then add images, javascript,
+and fonts as needed to support their customizations. See [Template Locations](template-locations)
+below for details on which templates you're likely to want to override.
+
+
+## Customization with Ansible
 
 This project is heavily customizable. While you can customize many details about the UI using the
 [Ansible Settings File](#the-settings-file), your institution may want to change the
 header, footer, some, or all of the content presented on the site. To do this, you will need to
 customize the [Jinja2](#https://jinja.palletsprojects.com/en/2.10.x/templates/) HTML templates listed below
 
+## Custom Templates
+
 ### Template locations
 
 Customizable templates are stored in `templates` directory. Each template name is linked in the
-[Ansible Settings File](#the-settings-file). The current files in the templates directory are:
+[Ansible Settings File](#the-ansible-settings-file). The current files in the templates directory are:
 
 #### Header Block Template
 
@@ -254,9 +311,12 @@ During the lifecycle of your site, you will likely need to deploy templates mult
 ansible-playbook --connection docker --inventory inventory playbooks/templates.yml
 ```
 
-## The Settings File
+## The Ansible Settings File
 
-TODO
+If you're [Installing to a VM](#install-to-vm-with-ansible), the ansible
+settings file will be of particular interest to you. You'll need to
+specify [Required Settings](#required-settings) as below to configure
+globus transfers properly.
 
 ### Required Settings
 

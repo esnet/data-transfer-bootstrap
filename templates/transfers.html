@@ -33,28 +33,32 @@
 
                     {% endif %}
                 </select>
+
+                <!-- Add a button for redirection -->
+                <button id="redirectButton" class="btn btn-primary mt-3" disabled>Go to Collection</button>
         </div>
     </div>
+    </div> 
 
-<script id='transfer-config' type='application/json'>
-    {
-        "portalEndpointID": "{{ collection_id }}"
-    }
-</script>
-    <div id="transfer">
-        <!-- React components are mounted here -->
-    </div>
-<script src='/static/js/transfer/build/globus.js' type='application/javascript'></script>
 
-<script>
-    let mySelect = document.getElementById("mySelect");
-
-    mySelect.onchange = (event)=>{
-        let value = event.target.value;
-        let redirectTarget = `http://[[settings.hostname]]/transfers/${value}/`;
-        window.location = redirectTarget; 
-    };
-</script>
+    <script>
+        const mySelect = document.getElementById("mySelect");
+        const redirectButton = document.getElementById("redirectButton");
+    
+        // Enable the button only when a valid collection is selected
+        mySelect.onchange = (event) => {
+            const value = event.target.value;
+            redirectButton.disabled = !value; 
+        };
+    
+        redirectButton.onclick = () => {
+            const selectedValue = mySelect.value;
+            if (selectedValue) {
+                const redirectTarget = `https://app.globus.org/file-manager?origin_id=${selectedValue}&origin_path=%2F&two_pane=true`;
+                window.location.href = redirectTarget;
+            }
+        };
+    </script>
 
 
 

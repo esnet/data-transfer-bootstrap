@@ -22,17 +22,17 @@ project:
 # Globus settings. To determine these, See README.md
 # Globus settings. To determine these, See README.md
 globus:
-  client_id: d60e6bbb-4a6c-4e50-860d-aca3af3c1b9b
-  secret_key: GkDthqFs6kOE/V/0GCsdSSqFUNUBoS0upecBnkCkkUA=
-  search_index: 25ad7f95-1c21-4f8e-a478-ebdfbdfba7ec
+  client_id: N/A
+  secret_key:  N/A
+  search_index:  N/A
   collections:
-    - id: 64b7e306-edb7-4b17-8b25-9033517eca8b
+    - id:  N/A
       name: ESnet Read-Only Test DTN at Washington
       description: Anonymous read-only Globus test host in Washington, DC
-    - id: ece400da-0182-4777-91d6-27a1808f8371
+    - id:  N/A
       name: ESnet Read-Only Test DTN at Starlight in Chicago
       description: Anonymous read-only Globus test host at Starlight Chicago
-    - id: 8409a10b-de09-4670-a886-2c0b33f0fe25
+    - id:  N/A
       name: ESnet Read-Only Test DTN in Sunnyvale
       description: Anonymous read-only Globus test host in Sunnyvale, CA
 

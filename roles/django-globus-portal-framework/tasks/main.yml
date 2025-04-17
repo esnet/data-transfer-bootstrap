@@ -246,5 +246,3 @@
     dest: /etc/supervisor/conf.d/gunicorn.conf
   notify: restart gunicorn
 
-- name: Commit the build if we're in a docker environment
-  command: "docker commit globus-portal jkafader/globus-portal:ansible-build"

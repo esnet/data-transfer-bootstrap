@@ -8,7 +8,7 @@ institution_name: ESnet Data Portal
 
 # Administrator name and email
 administrator:
-  name: "Local Administrator Full Name"
+  name: "James Kafader"
   email: "jkafader@es.net"
 
 # Project-specific settings
@@ -39,7 +39,9 @@ globus:
 # Styling data
 colors:
   header: "#343A40"
-  primary: "#EAEBEF"
+  surface_1: "#E3E3E3"
+  surface_2: "#F2F2F2"
+  primary: "#0088B5"
   secondary: "#62CAF5"
   white: "#FFFFFF"
   surfaces:
@@ -49,7 +51,7 @@ colors:
 
 # Logo - All logo should be in the static directory
 logo: "../../static/ESnet_Logo.png"
-secondary_logo: "../../static/ESnet_Logo_Sphere.png"
+secondary_logo: "../../static/ESnet_Logo_Sphere.svg"
 
 # Customization - Add customizable content - further edit customization.html
 customization:

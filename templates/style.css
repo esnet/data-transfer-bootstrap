@@ -2,8 +2,8 @@ body {
     max-width: 100%;
     overflow-x: hidden;
     min-height: 100%;
-    font-family: Source sans 3;
-    background-color: #F2F2F2;
+    font-family: "Source Sans 3";
+    background-color: [[ settings.colors.surface_2 ]];
     color: #3D3D3D;
 }
 
@@ -16,7 +16,7 @@ body {
     min-width: 100%;
     padding: 8px 64px;
     gap: 10px;
-    background-color: #E3E3E3;
+    background-color: [[ settings.colors.surface_1 ]];
 }
 
 .header-logo {
@@ -107,7 +107,7 @@ body {
 }
 
 .login-button {
-    background: linear-gradient(180deg, #00B6F2 0%, #0088B5 100%);
+    background: linear-gradient(180deg, #00B6F2 0%, [[ settings.colors.primary ]] 100%);
     border: 2px solid #C3C7D9;
     box-shadow: 0px 2px 3px -1px rgba(0, 0, 0, 0.1), 0px 4px 5px -1px rgba(0, 0, 0, 0.1);
     border-radius: 18px;
@@ -138,8 +138,8 @@ body {
     padding: 4px 16px;
     gap: 16px;
 
-    background: #E3E3E3;;
-    border: 3px solid #0088B5;
+    background: [[ settings.colors.surface_1 ]];;
+    border: 3px solid [[ settings.colors.primary ]];
     /* packets/drop-shadow/medium */
     box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1), 0px 4px 5px rgba(0, 0, 0, 0.1);
     border-radius: 18px;
@@ -157,7 +157,7 @@ body {
     padding: 4px 16px;
     gap: 16px;
 
-    background: #E3E3E3;
+    background: [[ settings.colors.surface_1 ]];
     border: 2px solid #0088B5;
     border-radius: 18px;
   }
@@ -194,7 +194,7 @@ body {
     gap: 32px;
 
     background: #00A0D6;
-    border: 2px solid #FFFFFF;
+    border: 2px solid [[ settings.colors.white ]];
     border-radius: 18px;
   }
 
@@ -207,7 +207,7 @@ body {
 
 .graybox {
     width: 80vw;
-    background-color: #E3E3E3;
+    background-color: [[ settings.colors.surface_1 ]];
     border-radius: 40px;
 
     display: flex;
@@ -253,7 +253,7 @@ body {
   gap: 16px;
 
 
-  background: #FFFFFF;
+  background: [[ settings.colors.white ]];
   border: 2px solid #3F424D;
   border-radius: 18px;
   font-size: 12px;
@@ -268,7 +268,7 @@ body {
   padding: 10px 16px;
   gap: 16px;
 
-  background: #FFFFFF;
+  background: [[ settings.colors.white ]];
   border: 2px solid #30333B;
   box-shadow: 0px 0px 0px 2px #00A0D6;
   border-radius: 18px;
@@ -290,7 +290,7 @@ body {
   align-items: center; /* Center content horizontally */
   justify-content: center; /* Center content vertically */
   gap: 36px;
-  background-color: #E3E3E3;
+  background-color: [[ settings.colors.surface_1 ]];
   border-radius: 36px;
   padding: 24px;
 }
@@ -323,6 +323,11 @@ body {
   justify-content: center;
 }
 
+.getting-started-block { 
+  display: flex;
+  flex-direction: row;
+  gap: 36px;
+}
 
 .transfer-demo {
   width: 335px;
@@ -339,14 +344,14 @@ body {
     align-items: center;
     width: 300px;
     height: 300px;
-    border: 3px solid #62CAF5;
+    border: 3px solid [[ settings.colors.secondary ]];
     border-radius: 10px;
 }
 
 .footer {
     width: 100%;
     min-height: 200px;
-    background-color: #E3E3E3;
+    background-color: [[ settings.colors.surface_1 ]];
 
     display: flex;
     flex-direction: column;

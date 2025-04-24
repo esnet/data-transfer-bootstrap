@@ -3,10 +3,10 @@
   <defs>
     <style>
       .cls-1 {
-        fill: [[settings.colors.primary]];
+        fill: [[settings.colors.surface_1]];
       }
       .cls-2 {
-        fill: [[settings.colors.secondary]];
+        fill: [[settings.colors.primary]];
       }
       .cls-3 {
         fill: #00000;

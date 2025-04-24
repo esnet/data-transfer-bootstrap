@@ -116,7 +116,7 @@ static:
     template: ../templates/identity/ESnet_Logo.png
     destination: /backend/static/
   - name: Secondary Logo File
-    template: ../templates/identity/ESnet_Logo_Sphere.png
+    template: ../templates/identity/ESnet_Logo_Sphere.svg
     destination: /backend/static/
   - name: Transfer Page Image
     template: ../templates/identity/Transfer_Page.png

@@ -10,58 +10,66 @@
 {% endblock headextras %}
 
 {%block body%}
+<div style="margin-bottom: 220px">
     <div class="section">
-        <h4 style="text-align: center;">Globus Data Transfer Hub</h4>
+        <h4 style="text-align: center; font-family: 'Signika'; color: black; font-size: 36px;">ESnet Globus Data Transfer Hub</h4>
     </div>
-    <div class="row container-fluid">
-        <div class="col-10 mb-4" style="margin-left: auto; margin-right: auto;">
-                <h5>Select Source Node</h5>
-                <select id="mySelect" class="form-control">
-
-                    {% if collection_id %}
-                        <option value="{{collection_id}}"> {{collection_name}} </option>
-
-                    {%elif collection_id is null %}
-                        <option value="" disabled selected>Choose a collection</option>
-                        {% for collection in collections %}
-                            <option value= "{{collection.id}}">{{collection.name}}</option>
-                        {% empty %}
-                        <div class="alert alert-primary" role="alert">
-                            No collections configured for this portal! Check settings to add them.
-                        </div>
-                        {% endfor %}
-
-                    {% endif %}
-                </select>
-
-                <!-- Add a button for redirection -->
-                <button id="redirectButton" class="btn btn-primary mt-3" disabled>Go to Collection</button>
+    <div class='documentation'>
+        <div class="collectionbox">
+            <h3>Globus Collections</h3>
+            <div style="display: flex; flex-direction: row; align-items: end; justify-content: space-between; width: 100%; padding: 0 40px 0 40px;">
+                <p style="font-size: 16px; margin: 0;">Select a dataset collection and click 'Start Transfer' to proceed to the Globus transfer site</p>
+                <input id="item-filter" placeholder="Search..." class="searchinput"></input>
+            </div>
+            <div class="datasets" id="datasets-container">
+            <!-- Dataset blocks will be dynamically added here -->
+            </div>
         </div>
     </div>
-    </div> 
+</div>
+<script>
+    const collections = [[ settings.globus.collections ]];
 
+    function generateDatasetBlocks(collections) {
+        const container = document.getElementById("datasets-container");
 
-    <script>
-        const mySelect = document.getElementById("mySelect");
-        const redirectButton = document.getElementById("redirectButton");
-    
-        // Enable the button only when a valid collection is selected
-        mySelect.onchange = (event) => {
-            const value = event.target.value;
-            redirectButton.disabled = !value; 
-        };
-    
-        redirectButton.onclick = () => {
-            const selectedValue = mySelect.value;
-            if (selectedValue) {
-                const redirectTarget = `https://app.globus.org/file-manager?origin_id=${selectedValue}&origin_path=%2F&two_pane=true`;
-                window.location.href = redirectTarget;
+        container.innerHTML = collections.map(collection => `
+            <div class="dataset">
+                <svg width="91" height="91" viewBox="0 0 91 91" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.1667 19.6387L15.1667 19.6389L15.1667 19.6392C15.1667 19.6425 15.1666 19.6585 15.1783 19.6963C15.1912 19.738 15.2229 19.8206 15.2997 19.9443C15.4606 20.2036 15.7888 20.5934 16.4037 21.0726C17.6556 22.0484 19.7022 23.0912 22.5691 24.0363C28.2632 25.9135 36.3708 27.1389 45.5 27.1389C54.6293 27.1389 62.7369 25.9135 68.431 24.0363C71.2979 23.0912 73.3445 22.0484 74.5964 21.0726C75.2112 20.5934 75.5394 20.2036 75.7004 19.9443C75.7772 19.8206 75.8089 19.738 75.8218 19.6963C75.8334 19.6585 75.8334 19.6425 75.8334 19.6392V19.6389C75.8334 19.6362 75.8337 19.6204 75.8218 19.5816C75.8089 19.5398 75.7772 19.4572 75.7004 19.3335C75.5394 19.0743 75.2112 18.6844 74.5964 18.2052C73.3445 17.2294 71.2979 16.1867 68.431 15.2415C62.7369 13.3643 54.6293 12.1389 45.5 12.1389C36.3708 12.1389 28.2632 13.3643 22.5691 15.2415C19.7022 16.1867 17.6556 17.2294 16.4037 18.2052C15.7888 18.6844 15.4606 19.0743 15.2997 19.3335C15.2229 19.4572 15.1912 19.5398 15.1783 19.5816C15.1666 19.6194 15.1667 19.6353 15.1667 19.6387ZM20.171 8.1264C26.8276 5.9319 35.7826 4.63892 45.5 4.63892C55.2175 4.63892 64.1724 5.9319 70.8291 8.1264C74.1376 9.21712 77.0886 10.5985 79.2903 12.3146C81.4492 13.9974 83.4167 16.4441 83.4167 19.6389C83.4167 22.8337 81.4492 25.2805 79.2903 26.9632C77.0886 28.6793 74.1376 30.0607 70.8291 31.1514C64.1724 33.3459 55.2175 34.6389 45.5 34.6389C35.7826 34.6389 26.8276 33.3459 20.171 31.1514C16.8625 30.0607 13.9115 28.6793 11.7098 26.9632C9.55084 25.2805 7.58337 22.8337 7.58337 19.6389C7.58337 16.4441 9.55084 13.9974 11.7098 12.3146C13.9115 10.5985 16.8625 9.21712 20.171 8.1264Z" fill="#0088B5"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.375 15.8889C13.4691 15.8889 15.1667 17.5678 15.1667 19.6389V72.1389L15.1668 72.1399L15.1673 72.1447C15.1681 72.1496 15.1701 72.1612 15.1759 72.1803C15.1873 72.2181 15.2164 72.2963 15.2886 72.4153C15.4394 72.664 15.7521 73.0469 16.3498 73.5226C17.5672 74.4916 19.6033 75.5586 22.5691 76.5363C28.4755 78.4835 36.727 79.6389 45.5 79.6389C54.2731 79.6389 62.5246 78.4835 68.431 76.5363C71.3967 75.5586 73.4329 74.4916 74.6503 73.5226C75.2479 73.0469 75.5607 72.664 75.7115 72.4153C75.7837 72.2963 75.8128 72.2181 75.8242 72.1803C75.8299 72.1612 75.832 72.1496 75.8327 72.1447L75.8333 72.1399L75.8334 72.1389V19.6389C75.8334 17.5678 77.531 15.8889 79.625 15.8889C81.7191 15.8889 83.4167 17.5678 83.4167 19.6389V72.1389C83.4167 75.2336 81.5497 77.6583 79.4046 79.3656C77.2244 81.1008 74.263 82.5194 70.8291 83.6514C63.9362 85.9238 54.828 87.1389 45.5 87.1389C36.1721 87.1389 27.0639 85.9238 20.171 83.6514C16.737 82.5194 13.7756 81.1008 11.5955 79.3656C9.45036 77.6583 7.58337 75.2336 7.58337 72.1389V19.6389C7.58337 17.5678 9.28096 15.8889 11.375 15.8889Z" fill="#0088B5"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.375 42.1389C13.4691 42.1389 15.1667 43.8178 15.1667 45.8889L15.1668 45.8899L15.1673 45.8947C15.1681 45.8996 15.1701 45.9112 15.1759 45.9303C15.1873 45.9681 15.2164 46.0463 15.2886 46.1653C15.4394 46.414 15.7521 46.7969 16.3498 47.2726C17.5672 48.2415 19.6033 49.3086 22.5691 50.2863C28.4755 52.2335 36.727 53.3889 45.5 53.3889C54.2731 53.3889 62.5246 52.2335 68.431 50.2863C71.3967 49.3086 73.4329 48.2415 74.6503 47.2726C75.2479 46.7969 75.5607 46.414 75.7115 46.1653C75.7837 46.0463 75.8128 45.9681 75.8242 45.9303C75.8299 45.9112 75.832 45.8996 75.8327 45.8947L75.8333 45.8899L75.8334 45.8889C75.8334 43.8178 77.531 42.1389 79.625 42.1389C81.7191 42.1389 83.4167 43.8178 83.4167 45.8889C83.4167 48.9836 81.5497 51.4083 79.4046 53.1156C77.2244 54.8508 74.263 56.2694 70.8291 57.4014C63.9362 59.6738 54.828 60.8889 45.5 60.8889C36.1721 60.8889 27.0639 59.6738 20.171 57.4014C16.737 56.2694 13.7756 54.8508 11.5955 53.1156C9.45036 51.4083 7.58337 48.9836 7.58337 45.8889C7.58337 43.8178 9.28096 42.1389 11.375 42.1389Z" fill="#0088B5"/>
+                </svg> 
+                <div class="description-text">
+                    <h2>${collection.name}</h2>
+                    <p>${collection.description}</p>
+                </div>
+                <button class="transfer-button">
+                    <a href="https://app.globus.org/file-manager?origin_id=${collection.id}&origin_path=%2F&two_pane=true" style = "text-decoration: none; color:white;">
+                    Start Transfer
+                    </a>
+                </button>
+            </div>
+        `).join(""); 
+    }
+
+    generateDatasetBlocks(collections);
+</script>
+
+<script>
+    function filterItems(ev) {
+        let targetString = ev.target.value.toLowerCase(); // Convert input to lowercase for case-insensitive matching
+        let items = document.querySelectorAll(".dataset"); // Select all dataset elements
+        items.forEach((item) => {
+            item.classList.remove("hidden"); // Unhide all items
+            if (!item.innerText.toLowerCase().includes(targetString)) { // Check if the item matches the input
+                item.classList.add("hidden"); // Hide items that do not match
             }
-        };
-    </script>
+        });
+    }
 
-
-
-
+    // Attach the event listener to the search input field
+    document.getElementById("item-filter").addEventListener("keydown", filterItems);
+</script>
 
 {% endblock %}

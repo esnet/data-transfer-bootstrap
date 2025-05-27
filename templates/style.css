@@ -1,0 +1,630 @@
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+    min-height: 100%;
+    font-family: "Source Sans 3";
+    background-color: [[ settings.colors.surface_2 ]];
+    color: #3D3D3D;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100px;
+    min-width: 100%;
+    padding: 8px 64px;
+    gap: 10px;
+    background-color: [[ settings.colors.surface_1 ]];
+}
+
+.header-logo {
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 70px;
+}
+
+.breadcrumb {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 8px 64px;
+    gap: 48px;
+    border-radius: 0px;
+    background-color: #4D515E;
+}
+
+.breadcrumb-item {
+    font-weight: 400;
+    font-size: 20px;
+    align-items: center;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    color: #4D515E; 
+}
+
+
+.section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 160px;
+    gap: 100px;
+
+    width: 100%;
+    margin-top: 50px;
+}
+
+
+.subsection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 64px 0px;
+    gap: 36px;
+}
+
+.landing-text {
+    text-align: left;
+    width: 80%;
+}
+
+.landing-text h3 {
+    font-size: 25px;
+    line-height: 30px;
+}
+
+.landing-text description {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.login-button:hover {
+  background: linear-gradient(180deg, #64D2FF 0%, #00A0D6 100%);
+  border: 2px solid #C3C7D9;
+  box-shadow: 0px 2px 3px -1px rgba(0, 0, 0, 0.1), 0px 4px 5px -1px rgba(0, 0, 0, 0.1);
+  border-radius: 18px;
+
+  font-size: 20px;
+  border-radius: 10px;
+  transition: background-color 0.3s;  
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 88px;
+  gap: 10px;
+
+  min-width: 229px;
+  min-height: 55px;
+  text-decoration: none;
+}
+
+.login-button {
+    background: linear-gradient(180deg, #00B6F2 0%, [[ settings.colors.primary ]] 100%);
+    border: 2px solid #C3C7D9;
+    box-shadow: 0px 2px 3px -1px rgba(0, 0, 0, 0.1), 0px 4px 5px -1px rgba(0, 0, 0, 0.1);
+    border-radius: 18px;
+
+    font-size: 20px;
+    border-radius: 10px;
+    transition: background-color 0.3s;  
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 88px;
+    gap: 10px;
+
+    min-width: 229px;
+    min-height: 55px
+  }
+
+  .view-more-button:hover {
+    box-sizing: border-box;
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 16px;
+    gap: 16px;
+
+    background: [[ settings.colors.surface_1 ]];;
+    border: 3px solid [[ settings.colors.primary ]];
+    /* packets/drop-shadow/medium */
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1), 0px 4px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 18px;
+    text-decoration: none;
+  }
+
+  .view-more-button {
+    box-sizing: border-box;
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 16px;
+    gap: 16px;
+
+    background: [[ settings.colors.surface_1 ]];
+    border: 2px solid #0088B5;
+    border-radius: 18px;
+  }
+
+  .transfer-button:hover {
+    box-sizing: border-box;
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 32px;
+    gap: 32px;
+    isolation: isolate;
+
+
+    background: #00B6F2;
+    border: 2px solid #C3C7D9;
+    box-shadow: 0px 2px 3px -1px rgba(0, 0, 0, 0.1), 0px 4px 5px -1px rgba(0, 0, 0, 0.1);
+    border-radius: 18px;
+    text-decoration: none;
+  }
+
+  .transfer-button {
+    box-sizing: border-box;
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 32px;
+    gap: 32px;
+
+    background: #00A0D6;
+    border: 2px solid [[ settings.colors.white ]];
+    border-radius: 18px;
+  }
+
+
+.main-illustration{
+    width: 35vw;
+    height: auto;
+}
+
+
+.graybox {
+    width: 80vw;
+    background-color: [[ settings.colors.surface_1 ]];
+    border-radius: 40px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px;
+    gap: 10px;
+}
+
+
+.graybox h3 {
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 30px;
+    color:#4D515E;
+}
+
+.collectionbox {
+  width: 90vw;
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px;
+  gap: 10px;
+}
+
+.collectionbox h3 {
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 30px;
+  color:#4D515E;
+}
+
+.searchinput {
+  box-sizing: border-box;
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 16px;
+  gap: 16px;
+
+
+  background: [[ settings.colors.white ]];
+  border: 2px solid #3F424D;
+  border-radius: 18px;
+  font-size: 12px;
+}
+
+.searchinput:focus {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 16px;
+  gap: 16px;
+
+  background: [[ settings.colors.white ]];
+  border: 2px solid #30333B;
+  box-shadow: 0px 0px 0px 2px #00A0D6;
+  border-radius: 18px;
+  font-size: 12px;
+}
+
+.datasets {
+  display: grid; /* Use CSS Grid */
+  grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+  grid-auto-rows: 1fr; /* Ensure all rows have equal height */
+  gap: 36px; /* Space between items */
+  padding: 0px 40px;
+  width: 100%; /* Ensure it spans the full width */
+}
+
+.dataset {
+  display: flex; /* Use Flexbox for content alignment within each cell */
+  flex-direction: column; /* Stack content vertically */
+  align-items: center; /* Center content horizontally */
+  justify-content: center; /* Center content vertically */
+  gap: 36px;
+  background-color: [[ settings.colors.surface_1 ]];
+  border-radius: 36px;
+  padding: 24px;
+}
+
+.hidden {
+  display: none;
+}
+
+
+.description-text {
+    text-align: left;
+    width: 100%;
+}
+
+.description-text h2{
+    font-weight: 600;
+    font-size: 16px;
+    width: 100%;
+}
+
+.description-text p {
+    font-weight: 500;
+    font-size: 16px;
+    width: 100%;
+}
+
+.documentation { 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.getting-started-block { 
+  display: flex;
+  flex-direction: row;
+  gap: 36px;
+}
+
+.transfer-demo {
+  width: 335px;
+  height: auto;
+  box-shadow: 2px 2px 5px 0px #3B4147; /* Example values */
+}
+
+.team-mem-image-placeholder {
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+    border: 3px solid [[ settings.colors.secondary ]];
+    border-radius: 10px;
+}
+
+.footer {
+    width: 100%;
+    min-height: 200px;
+    background-color: [[ settings.colors.surface_1 ]];
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 32px 64px;
+    gap: 24px;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: row;
+    gap: 48px;
+}
+
+
+
+/* Import external font files for page styling */
+@font-face {
+    font-family: 'Signika';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/signika/v25/vEF72_JTCgwQ5ejvMV0Ox_Kg1UwJ0tKfX4zNpD8E4ASzH1r93zuYzQ.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Signika';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/signika/v25/vEF72_JTCgwQ5ejvMV0Ox_Kg1UwJ0tKfX4zNpD8E4ASzH1r9gTuYzQ.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Signika';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/signika/v25/vEF72_JTCgwQ5ejvMV0Ox_Kg1UwJ0tKfX4zNpD8E4ASzH1r9szuYzQ.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Signika';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/signika/v25/vEF72_JTCgwQ5ejvMV0Ox_Kg1UwJ0tKfX4zNpD8E4ASzH1r9XzyYzQ.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Signika';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/signika/v25/vEF72_JTCgwQ5ejvMV0Ox_Kg1UwJ0tKfX4zNpD8E4ASzH1r9ZjyYzQ.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Code Pro';
+    font-style: italic;
+    font-weight: 200;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcecodepro/v23/HI_jiYsKILxRpg3hIP6sJ7fM7PqlOPHYvDP_W9O7GQTT7I1rSQ.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Code Pro';
+    font-style: italic;
+    font-weight: 300;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcecodepro/v23/HI_jiYsKILxRpg3hIP6sJ7fM7PqlOPHYvDP_W9O7GQTTMo1rSQ.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Code Pro';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcecodepro/v23/HI_jiYsKILxRpg3hIP6sJ7fM7PqlOPHYvDP_W9O7GQTTbI1rSQ.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Code Pro';
+    font-style: italic;
+    font-weight: 500;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcecodepro/v23/HI_jiYsKILxRpg3hIP6sJ7fM7PqlOPHYvDP_W9O7GQTTXo1rSQ.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Code Pro';
+    font-style: italic;
+    font-weight: 600;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcecodepro/v23/HI_jiYsKILxRpg3hIP6sJ7fM7PqlOPHYvDP_W9O7GQTTsoprSQ.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Code Pro';
+    font-style: italic;
+    font-weight: 700;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcecodepro/v23/HI_jiYsKILxRpg3hIP6sJ7fM7PqlOPHYvDP_W9O7GQTTi4prSQ.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Code Pro';
+    font-style: italic;
+    font-weight: 800;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcecodepro/v23/HI_jiYsKILxRpg3hIP6sJ7fM7PqlOPHYvDP_W9O7GQTT7IprSQ.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Code Pro';
+    font-style: italic;
+    font-weight: 900;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcecodepro/v23/HI_jiYsKILxRpg3hIP6sJ7fM7PqlOPHYvDP_W9O7GQTTxYprSQ.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Code Pro';
+    font-style: normal;
+    font-weight: 200;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcecodepro/v23/HI_diYsKILxRpg3hIP6sJ7fM7PqPMcMnZFqUwX28DEyQhM4.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Code Pro';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcecodepro/v23/HI_diYsKILxRpg3hIP6sJ7fM7PqPMcMnZFqUwX28DJKQhM4.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Code Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcecodepro/v23/HI_diYsKILxRpg3hIP6sJ7fM7PqPMcMnZFqUwX28DMyQhM4.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Code Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcecodepro/v23/HI_diYsKILxRpg3hIP6sJ7fM7PqPMcMnZFqUwX28DP6QhM4.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Code Pro';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcecodepro/v23/HI_diYsKILxRpg3hIP6sJ7fM7PqPMcMnZFqUwX28DBKXhM4.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Code Pro';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcecodepro/v23/HI_diYsKILxRpg3hIP6sJ7fM7PqPMcMnZFqUwX28DCuXhM4.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Code Pro';
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcecodepro/v23/HI_diYsKILxRpg3hIP6sJ7fM7PqPMcMnZFqUwX28DEyXhM4.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Code Pro';
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcecodepro/v23/HI_diYsKILxRpg3hIP6sJ7fM7PqPMcMnZFqUwX28DGWXhM4.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Sans 3';
+    font-style: italic;
+    font-weight: 200;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcesans3/v18/nwpDtKy2OAdR1K-IwhWudF-R3woAa8opPOrG97lwqDlO9C4.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Sans 3';
+    font-style: italic;
+    font-weight: 300;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcesans3/v18/nwpDtKy2OAdR1K-IwhWudF-R3woAa8opPOrG97lwqOdO9C4.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Sans 3';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcesans3/v18/nwpDtKy2OAdR1K-IwhWudF-R3woAa8opPOrG97lwqLlO9C4.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Sans 3';
+    font-style: italic;
+    font-weight: 500;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcesans3/v18/nwpDtKy2OAdR1K-IwhWudF-R3woAa8opPOrG97lwqItO9C4.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Sans 3';
+    font-style: italic;
+    font-weight: 600;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcesans3/v18/nwpDtKy2OAdR1K-IwhWudF-R3woAa8opPOrG97lwqGdJ9C4.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Sans 3';
+    font-style: italic;
+    font-weight: 700;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcesans3/v18/nwpDtKy2OAdR1K-IwhWudF-R3woAa8opPOrG97lwqF5J9C4.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Sans 3';
+    font-style: italic;
+    font-weight: 800;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcesans3/v18/nwpDtKy2OAdR1K-IwhWudF-R3woAa8opPOrG97lwqDlJ9C4.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Sans 3';
+    font-style: italic;
+    font-weight: 900;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcesans3/v18/nwpDtKy2OAdR1K-IwhWudF-R3woAa8opPOrG97lwqBBJ9C4.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Sans 3';
+    font-style: normal;
+    font-weight: 200;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcesans3/v18/nwpBtKy2OAdR1K-IwhWudF-R9QMylBJAV3Bo8Kw461EN.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Sans 3';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcesans3/v18/nwpBtKy2OAdR1K-IwhWudF-R9QMylBJAV3Bo8Kzm61EN.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Sans 3';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcesans3/v18/nwpBtKy2OAdR1K-IwhWudF-R9QMylBJAV3Bo8Ky461EN.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Sans 3';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcesans3/v18/nwpBtKy2OAdR1K-IwhWudF-R9QMylBJAV3Bo8KyK61EN.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Sans 3';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcesans3/v18/nwpBtKy2OAdR1K-IwhWudF-R9QMylBJAV3Bo8Kxm7FEN.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Sans 3';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcesans3/v18/nwpBtKy2OAdR1K-IwhWudF-R9QMylBJAV3Bo8Kxf7FEN.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Sans 3';
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcesans3/v18/nwpBtKy2OAdR1K-IwhWudF-R9QMylBJAV3Bo8Kw47FEN.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Source Sans 3';
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sourcesans3/v18/nwpBtKy2OAdR1K-IwhWudF-R9QMylBJAV3Bo8KwR7FEN.ttf) format('truetype');
+  }

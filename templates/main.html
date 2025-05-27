@@ -6,39 +6,62 @@
 {% endblock %} 
 
 {% block breadcrumb_items %}
-<li class="breadcrumb-item">
-  <a class="h5" href="{% url 'landing-page' %}">{{globus_portal_framework.project_title}}</a>
-</li>
-<li class="breadcrumb-item active"><a class="h5">About</a></li>
+
 {% endblock %} 
 
 {% block body %}
-<div class="row">
-  <div class="col">
-    <h2 class="text-center mt-3 mb-5">{{project_title}}</h2>
-  </div>
-</div>
 
-<div class="row mb-5">
-  <div class="col"></div>
-  <div class="col-10">
-    <div>
-      <p class="lead font-weight-bolder">
-        {% block getting_started %}
-        {% index_template 'globus-portal-framework/v2/components/getting_started_block.html' as getting_started %}
-        {% include getting_started %}
-        {% endblock %}
-      </p>
+  <div class="section">
+    <div class="subsection">
+      <img src=[[settings.secondary_logo]] alt="Company Logo" width="35%">
+
+      {%if globus_portal_framework.auth_enabled and request.user.is_authenticated %}
+      <div class="landing-text">
+      <h3>Welcome Back to [[settings.project.name]]</h3>
+      <p class="description">[[settings.project.description]]</p>
+      <p class="description" style="font-style: italic;">[[settings.project.sub_description]]</p>
+      </div>
+      
+      <button class="login-button">
+        <a href="{% url 'transfer-page' %}" style = "color:black">Start Transfer</a>
+      </button>
+
+      {% elif globus_portal_framework.auth_enabled %}
+      <div class="landing-text">
+      <h3>Welcome to [[settings.project.name]]</h3>
+      <p class="description">[[settings.project.description]]</p>
+      <p class="description" style="font-style: italic;">[[settings.project.sub_description]]</p>
+      </div>
+      
+      <button class="login-button">
+          <a href="{% url 'social:begin' 'globus' %}" style = "color:black">Login</a>
+      </button>
+
+      {% endif %}
     </div>
-    <div>
-      <p class="lead font-weight-bolder">
+
+    <img src = "static/illustration.svg" alt = "Data Transfer Hub Illustration" class = "main-illustration">
+  </div>
+
+    <div class="section">
         {% block documentation %}
         {% index_template 'globus-portal-framework/v2/components/documentation_block.html' as documentation %}
         {% include documentation %}
         {% endblock %}
-      </p>
     </div>
-  </div>
-  <div class="col"></div>
-</div>
+    <div class="section">
+        {% block getting_started %}
+        {% index_template 'globus-portal-framework/v2/components/getting_started_block.html' as getting_started %}
+        {% include getting_started %}
+        {% endblock %}
+    </div>
+    <div class="section">
+        {% block customization %}
+        {% index_template 'globus-portal-framework/v2/components/customization.html' as customization %}
+        {% include customization %}
+        {% endblock %}
+    </div>
+
+
+
 {% endblock %}

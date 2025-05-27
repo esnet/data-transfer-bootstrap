@@ -8,49 +8,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     {# CSS files #}
-    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}" >
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 
     {# Django CSRF Protection #}
     {% csrf_token %}
 
     {% block search_head %}{% endblock %}
 
-    {# Extras #}
-    {%block headextras%}
-    {% index_template 'globus-portal-framework/v2/components/base-head-extras.html' as bhe %}
-    {% include bhe %}
-    {%endblock%}
-
     <title>{%block title%}{%endblock%}</title>
 
   </head>
   <body>
-
     {% block base_nav %}
     {% index_template 'globus-portal-framework/v2/components/base-nav.html' as base_nav %}
     {% include base_nav %}
     {% endblock %}
-
+    <div class="white">
     {% block breadcrumbs %}
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        {% block breadcrumb_items %}
-        <li class="breadcrumb-item {% is_active request 'index-selection' %}"><a class="h5" href="{% url 'index-selection' %}">Django Globus Portal Framework</a></li>
-        {% endblock %}
+    <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="mailto:[[settings.administrator.email]]" style = "color:white">Contact</a></li>
+          {%if globus_portal_framework.auth_enabled and request.user.is_authenticated %}
+          <li class="breadcrumb-item"><a href="{% url 'logout' %}?next=/" style = "color:white">Logout</a></li>
+          <li class="breadcrumb-item"><a href="/" style = "color:white">{{request.user.username}}</a></li>
+          
+          {% elif globus_portal_framework.auth_enabled %}
+          <li class="breadcrumb-item"><a href="{% url 'social:begin' 'globus' %}" style = "color:white">
+                   Login
+                </a>
+              </li>
+              {% endif %}
       </ol>
-    </nav>
-    {% endblock %}
-
-    {% block tp_nav %}
-    {% index_template 'globus-portal-framework/v2/components/tabbed-nav.html' as tp_nav %}
-    {% include tp_nav %}
     {% endblock %}
 
     <!-- Page body -->
     {%block body%}
     {%endblock%}
-
+    </div>
     {% block footer %}
+
     {% index_template 'globus-portal-framework/v2/components/footer.html' as footer %}
     {% include footer %}
     {% endblock %}

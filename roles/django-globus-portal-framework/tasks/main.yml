@@ -50,6 +50,10 @@
       - git
       - curl
       - supervisor
+      - python3-venv
+      - python3-pip
+      - python3-certbot
+      - python3-certbot-nginx
 
 - name: Install Node 18 apt sources
   shell:
@@ -84,22 +88,69 @@
     cmd: "python3 -m venv {{ venv_path }}"
     creates: "{{ venv_path }}"
 
+
+- name: Register Certbot
+  shell:
+    cmd: "certbot -n register --agree-tos --email {{ settings.administrator.email }} && touch /etc/letsencrypt/.registered"
+    creates: "/etc/letsencrypt/.registered"
+    executable: /bin/bash
+  when: "\"docker\" not in group_names"
+  tags:
+    - nginx
+    - certbot
+
+- name: Setup cronjob for renewal
+  cron:
+    name: certbot-renewal
+    job: "/bin/bash -lc '/usr/bin/certbot -q renew'"
+    minute: "0"
+    hour: "14"
+  when: "\"docker\" not in group_names"
+  tags:
+    - nginx
+    - certbot
+
+- name: Check if cert file exists
+  stat:
+    path: "/etc/letsencrypt/live/{{ settings.hostname }}"
+  register: ssl
+
+- name: Stop gunicorn to acquire cert if cert not present
+  service:
+      name: supervisor
+      state: "stopped"
+  when: "not ssl.stat.exists and \"docker\" not in group_names"
+  notify: restart gunicorn
+
+- name: 'Get certificate'
+  command: '/usr/bin/certbot -n --nginx certonly -d {{ settings.hostname }}'
+  args:
+    creates: '/etc/letsencrypt/live/{{ settings.hostname }}'
+  ignore_errors: true
+  when: "\"docker\" not in group_names"
+  tags:
+    - nginx
+    - certbot
+
 - name: Install cookiecutter
   pip:
     name: cookiecutter
-    virtualenv: "/venv/"
+    virtualenv: "{{ venv_path }}"
 
 - name: Check latest remote commit hash
-  shell:
+  ansible.builtin.shell:
     executable: /bin/bash
     cmd: "git ls-files https://github.com/jkafader-esnet/cookiecutter-django-globus-app | grep main | awk '{print $1}' > /latest.hash"
 
 - name: Stat latest commit hash file
-  stat: /latest.hash
+  ansible.builtin.stat: 
+    path: /latest.hash
   register: latest_hash
 
+
 - name: Stat last commit hash file
-  stat: /last.hash
+  ansible.builtin.stat: 
+    path: /last.hash
   register: last_hash
 
 - name: Detect whether upstream_has_changed
@@ -133,14 +184,21 @@
     chdir: /
     cmd: "source /venv/bin/activate && cookiecutter https://github.com/jkafader-esnet/cookiecutter-django-globus-app --no-input --config-file /root/cookiecutter.yml"
     creates: "/backend"
-  args:
     executable: /bin/bash
+  notify: restart gunicorn
 
 - name: Install django-globus-app requirements
   pip:
     requirements: "/backend/requirements.txt"
-    virtualenv: "/venv/"
+    virtualenv: "{{ venv_path }}"
   notify: restart gunicorn
+
+- name: Register path to site-packages
+  shell:
+    cmd: "source {{ venv_path }}/bin/activate && python3 -c \"import sysconfig; print(sysconfig.get_path('purelib'))\""
+  args:
+    executable: /bin/bash
+  register: site_packages
 
 #################################
 # Workaround: this requires a fix in django-globus-portal-framework
@@ -150,7 +208,7 @@
 - name: Copy magnifying glass in place
   template:
     src: mag_glass.svg
-    dest: /venv/lib/python3.9/site-packages/globus_portal_framework/static/globus-portal-framework/images/mag_glass.svg
+    dest: "{{ site_packages.stdout }}/globus_portal_framework/static/globus-portal-framework/images/mag_glass.svg"
 
 #################################
 # Workaround: this requires a fix in https://github.com/NickolausDS/cookiecutter-django-globus-app
@@ -188,14 +246,3 @@
     dest: /etc/supervisor/conf.d/gunicorn.conf
   notify: restart gunicorn
 
-# /venv/bin/gunicorn backend.wsgi --env DJANGO_SETTINGS_MODULE=backend.settings.base --name globus-portal-app --bind 0.0.0.0:80 --workers 2 --log-level info --chdir /backend
-
-# - name: Install node requirements
-#   shell:
-#     chdir: /backend
-#     cmd: "{{ command }}"
-#     vars:
-#       command:
-#         - npm install
-#         - npm rebuild node-sass
-#         - npm run build-production

@@ -10,8 +10,24 @@
     state: directory
   with_items: "{{ settings.templates }}"
 
+# Reinstalling templates with Ansible post cookiecutter to retrieve var from settings.yml
 - name: Install Templates
+  template:
+    src: "{{ item.template }}"
+    dest: "{{ item.destination }}"
+
+    # Setting custom string notations on Ansible to avoid Django in html templates from being removed in the installation process
+    block_end_string: "%]"
+    block_start_string: "[%"
+    variable_end_string: "]]"
+    variable_start_string: "[["
+
+  with_items: "{{ settings.templates }}"
+
+- name: Install Logo
   copy:
     src: "{{ item.template }}"
     dest: "{{ item.destination }}"
-  with_items: "{{ settings.templates }}"
+
+  with_items: "{{ settings.static }}"
+

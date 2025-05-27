@@ -1,12 +1,12 @@
 
 default_context:
     author_name: {{ settings.administrator.name }}
-    email: {{ settings.administrator.email }}
-    description: {{ settings.project.description }}
-    project_name: {{ settings.project.name }}
+    email: "{{ settings.administrator.email }}"
+    description: "{{ settings.project.description }}"
+    project_name: "{{ settings.project.name }}"
     project_slug: backend
-    version: {{ settings.project.version }}
-    globus_client_id: {{ settings.globus.client_id }}
-    globus_secret_key: {{ settings.globus.secret_key }}
-    globus_search_index: {{ settings.globus.search_index }}
-    globus_portal_endpoint_id: {{ settings.globus.collections[0].id }}
+    version: "{{ settings.project.version }}"
+    globus_client_id: "{{ settings.globus.client_id }}"
+    globus_secret_key: "{{ settings.globus.secret_key }}"
+    globus_search_index: "{{ settings.globus.search_index }}"
+    globus_portal_endpoint_id: "{{ settings.globus.collections[0].id }}"

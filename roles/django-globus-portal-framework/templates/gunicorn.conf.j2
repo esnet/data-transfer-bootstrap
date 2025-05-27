@@ -1,6 +1,7 @@
 [program:gunicorn]
 environment=PATH="/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",PYTHONPATH="/backend"
-command=/venv/bin/gunicorn backend.wsgi --env DJANGO_SETTINGS_MODULE=backend.settings.base --name globus-portal-app --bind 0.0.0.0:80 --workers 2 --log-level info --chdir /backend
+command=/venv/bin/gunicorn backend.wsgi --env DJANGO_SETTINGS_MODULE=backend.settings.base --name globus-portal-app --bind 0.0.0.0:80 --workers 2 --log-level info --chdir /backend {% if ssl.stat.exists %}--bind 0.0.0.0:443 --keyfile /etc/letsencrypt/live/{{ settings.hostname }}/privkey.pem --certfile /etc/letsencrypt/live/{{ settings.hostname }}/cert.pem --ca-certs=/etc/letsencrypt/live/{{ settings.hostname }}/chain.pem{% endif %}  
+
 directory=/backend
 autostart=true
 autorestart=true

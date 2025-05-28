@@ -146,7 +146,7 @@ git clone git@github.com:esnet/data-transfer-bootstrap.git
 ```
 python3 -m venv $WORK_DIR/ansible-venv
 ```
-p
+
 4. Activate the Ansible virtualenv
 ```
 source $WORK_DIR/ansible-venv/bin/activate

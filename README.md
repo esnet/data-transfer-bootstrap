@@ -8,6 +8,8 @@ This ansible role is intended to redistribute a collection of best practices sur
 - [Customization](#customization)
 - [Settings](#settings)
   - [Required Settings](#required-settings)
+  - [Styling Settings](#styling-settings)
+  - [Template Settings](#template-settings)
 
 ## Installation
 
@@ -322,20 +324,78 @@ globus transfers properly.
 
 ### Required Settings
 
-Globus settings are required for this ansible role to function. Generally, we'll use the `globus` command line tool to determine these settings
+Globus settings are required for this ansible role to function. Most of these settings will need to be determined at https://app.globus.com/
+
 
 ```
 globus.client_id
 ```
+The client ID is available from the "settings" section, under "developers:" https://app.globus.org/settings/developers. It is listed as "Project UUID" in the UI as of this writing. It is a UUID in the form of 1234567-1234-1234-1234-123456789012. You will have to be logged in as an administrator to register a Project (using the "+ Add Project" button in the UI) to find this setting.
 
 ```
 globus.secret_key
 ```
 
+The secret key is also available from the "developers" section. This should be available in the UI immediately after registering your project. It is a long string. 
+
 ```
 globus.search_index
 ```
+This setting is currently not used and can be left null.
+
 
 ```
 globus.collections
 ```
+
+This is a YAML list of collections in your account, listed with their UUIDs. You can find the UUID for each collection by navigating to it in the globus UI and copying the UUID from the URL bar.
+
+
+Here is an example of a fully filled in `globus` section for the config file:
+
+```
+globus:
+  client_id: 1234567-1234-1234-1234-123456789012
+  secret_key: akldichfj8e9vnowinuNEFFEJ0
+  search_index: null
+  collections:
+    - id: 1234567-1234-1234-1234-123456789012
+      name: Example collection 1
+      description: This collection is included as an example.
+    - id: 1234567-1234-1234-1234-123456789012
+      name: Example collection 2
+      description: This collection is included as an example.
+    - id: 1234567-1234-1234-1234-123456789012
+      name: Example collection 3
+      description: This collection is included as an example.
+```
+
+### Styling Settings
+
+In the `colors` section, you can specify some colors to make sure your data transfer site matches your organization's branding.
+
+The default set of colors:
+```
+colors:
+  header: "#333333"
+  primary: "#AAAAFF"
+  secondary: "#AAAAAA"
+  surfaces:
+    - "#FFFFFF"
+    - "#EEEEEE"
+    - "#DDDDDD"
+```
+
+### Templates Settings
+
+The `templates` section specifies templates that will be installed by ansible. You can either customize this default set of templates, or you can add new templates to the list. The templates use ```{% django_style %}``` tags and variable substitution. 
+
+#### Two-step Template Rendering
+
+Some sections of the templates are rendered by ansible, and some are rendered in the django template engine. 
+
+For this project ansible uses a special different rendering syntax. Tags look ```[% like_this %]``` and variables look `[[ like_this ]]`. This was done because some templates must be rendered during ansible deployment, whereas others must be rendered at runtime.
+
+It will take some trial and error to understand when different variables are available, but generally, the settings (from settings.yml) are available at ansible deployment time and everything else will use the normal django syntax at runtime.
+
+As of this writing, current documentation on django template syntax is available here: https://docs.djangoproject.com/en/5.1/topics/templates/

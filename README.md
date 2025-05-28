@@ -330,7 +330,7 @@ Globus settings are required for this ansible role to function. Most of these se
 ```
 globus.client_id
 ```
-The client ID is available from the "settings" section, under "developers:" https://app.globus.org/settings/developers. It is listed as "Project UUID" in the UI as of this writing. It is a UUID in the form of 1234567-1234-1234-1234-123456789012. You will have to be logged in as an administrator to register a Project (using the "+ Add Project" button in the UI) to find this setting.
+The client ID is available from the "settings" section, under "developers:" https://app.globus.org/settings/developers. It is listed as "Project UUID" in the UI as of this writing. It is a UUID in the form of `1234567-1234-1234-1234-123456789012`. You will have to be logged in as an administrator to register a Project (using the "+ Add Project" button in the UI) to find this setting.
 
 ```
 globus.secret_key
@@ -341,7 +341,7 @@ The secret key is also available from the "developers" section. This should be a
 ```
 globus.search_index
 ```
-This setting is currently not used and can be left null.
+This setting is currently not used, but is required to be set by the globus framework this project depends on. We typically set it to a nonsense value like `1234567-1234-1234-1234-123456789012`
 
 
 ```
@@ -388,7 +388,7 @@ colors:
 
 ### Templates Settings
 
-The `templates` section specifies templates that will be installed by ansible. You can either customize this default set of templates, or you can add new templates to the list. The templates use ```{% django_style %}``` tags and variable substitution. 
+The `templates` section specifies templates that will be installed by ansible. You can either customize this default set of templates, or you can add new templates to the list. The templates use `{% django_style %}` tags and variable substitution `{{ like_this }}`. 
 
 #### Two-step Template Rendering
 

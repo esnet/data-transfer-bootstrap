@@ -14,11 +14,6 @@
     msg: "The variable globus.secret_key must be set in your settings file. See README.md for more information"
   when: not settings.globus.secret_key
 
-- name: Check Settings / globus.search_index
-  fail: 
-    msg: "The variable globus.search_index must be set in your settings file. See README.md for more information"
-  when: not settings.globus.search_index
-
 - name: Check Settings / globus.collections
   fail: 
     msg: "The variable globus.collections must be set in your settings file. See README.md for more information"

@@ -15,16 +15,23 @@ administrator:
 project:
   name: "My Project's Data Transfer Portal"
   description: "A Site to Initiate Globus Data Transfers for My Project"
+  sub_description: "This is an demonstration project with default settings"
   version: "0.1.0"
 
 # Globus settings. To determine these, See README.md
 globus:
-  client_id: null
-  secret_key: null
-  search_index: null
+  client_id: 1234567-1234-1234-1234-123456789012
+  secret_key: akldichfj8e9vnowinuNEFFEJ0
+  search_index: 1234567-1234-1234-1234-123456789012
   collections:
-    - id: null
-      name: Example collection
+    - id: 1234567-1234-1234-1234-123456789012
+      name: Example collection 1
+      description: This collection is included as an example.
+    - id: 1234567-1234-1234-1234-123456789012
+      name: Example collection 2
+      description: This collection is included as an example.
+    - id: 1234567-1234-1234-1234-123456789012
+      name: Example collection 3
       description: This collection is included as an example.
 
 # Styling data
@@ -36,6 +43,23 @@ colors:
     - "#FFFFFF"
     - "#EEEEEE"
     - "#DDDDDD"
+
+logos:
+  primary: https://www.globus.org/assets/images/logo_globus-solid.svg
+  secondary: https://www.globus.org/assets/images/logo_globus-solid.svg
+
+customization:
+  section: "Research Staff"
+  teammates:
+    - name: "Jane Doe"
+      email: "jdoe@example.com"
+      position: Research Scientist
+    - name: "John Doe"
+      email: "jdoe2@example.com"
+      position: Research Scientist
+    - name: "Jay Doe"
+      email: "jdoe3@example.com"
+      position: Research Scientist
 
 # HTML templates (UI partials)
 # these paths are relative to this ansible role.
@@ -75,3 +99,8 @@ templates:
   - name: Documentation on Transfers
     template: ../templates/documentation/transfers.html
     destination: /backend/templates/globus-portal-framework/v2/components/documentation/overview.html
+
+static:
+  - name: Logo File
+    file: ../templates/identity/logo.png
+    destination: /backend/static/

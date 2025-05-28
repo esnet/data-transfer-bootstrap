@@ -15,7 +15,7 @@ administrator:
 project:
   name: "My Project's Data Transfer Portal"
   description: "A Site to Initiate Globus Data Transfers for My Project"
-  sub_description: "This is an demonstration project with default settings"
+  sub_description: "This is a demonstration project with default settings"
   version: "0.1.0"
 
 # Globus settings. To determine these, See README.md
@@ -37,8 +37,9 @@ globus:
 # Styling data
 colors:
   header: "#333333"
-  primary: "#AAAAFF"
-  secondary: "#AAAAAA"
+  primary: "#3E5C93"
+  secondary: "#7777CC"
+  white: "#FFFFFF"
   surfaces:
     - "#FFFFFF"
     - "#EEEEEE"
@@ -99,7 +100,16 @@ templates:
   - name: Documentation on Transfers
     template: ../templates/documentation/transfers.html
     destination: /backend/templates/globus-portal-framework/v2/components/documentation/overview.html
-
+  - name: Customization Block Template
+    template: ../templates/customization.html
+    destination: /backend/templates/globus-portal-framework/v2/components/ 
+  - name: Global Stylesheet
+    template: ../templates/style.css
+    destination: /backend/static/
+  - name: Illustration
+    template: ../templates/identity/illustration.svg
+    destination: /backend/static/
+    
 static:
   - name: Logo File
     file: ../templates/identity/logo.png

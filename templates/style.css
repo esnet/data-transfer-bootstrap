@@ -3,7 +3,7 @@ body {
     overflow-x: hidden;
     min-height: 100%;
     font-family: "Source Sans 3";
-    background-color: [[ settings.colors.surface_2 ]];
+    background-color: [[ settings.colors.surfaces[1] ]];
     color: #3D3D3D;
 }
 
@@ -16,7 +16,7 @@ body {
     min-width: 100%;
     padding: 8px 64px;
     gap: 10px;
-    background-color: [[ settings.colors.surface_1 ]];
+    background-color: [[ settings.colors.surfaces[0] ]];
 }
 
 .header-logo {
@@ -138,7 +138,7 @@ body {
     padding: 4px 16px;
     gap: 16px;
 
-    background: [[ settings.colors.surface_1 ]];;
+    background: [[ settings.colors.surfaces[0] ]];;
     border: 3px solid [[ settings.colors.primary ]];
     /* packets/drop-shadow/medium */
     box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1), 0px 4px 5px rgba(0, 0, 0, 0.1);
@@ -157,7 +157,7 @@ body {
     padding: 4px 16px;
     gap: 16px;
 
-    background: [[ settings.colors.surface_1 ]];
+    background: [[ settings.colors.surfaces[0] ]];
     border: 2px solid #0088B5;
     border-radius: 18px;
   }
@@ -207,7 +207,7 @@ body {
 
 .graybox {
     width: 80vw;
-    background-color: [[ settings.colors.surface_1 ]];
+    background-color: [[ settings.colors.surfaces[0] ]];
     border-radius: 40px;
 
     display: flex;
@@ -290,7 +290,7 @@ body {
   align-items: center; /* Center content horizontally */
   justify-content: center; /* Center content vertically */
   gap: 36px;
-  background-color: [[ settings.colors.surface_1 ]];
+  background-color: [[ settings.colors.surfaces[0] ]];
   border-radius: 36px;
   padding: 24px;
 }
@@ -351,7 +351,7 @@ body {
 .footer {
     width: 100%;
     min-height: 200px;
-    background-color: [[ settings.colors.surface_1 ]];
+    background-color: [[ settings.colors.surfaces[0] ]];
 
     display: flex;
     flex-direction: column;
